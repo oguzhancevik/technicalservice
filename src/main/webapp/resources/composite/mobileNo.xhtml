@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:p="http://primefaces.org/ui">
+		
+
+	<!-- INTERFACE -->
+	<composite:interface>
+		<composite:attribute name="id" type="java.lang.String"></composite:attribute>
+		<composite:attribute name="value" type="java.lang.String"></composite:attribute>
+		<composite:attribute name="disabled" type="boolean"></composite:attribute>
+		<composite:attribute name="required" type="boolean"></composite:attribute>
+		<composite:attribute name="requiredMessage" type="java.lang.String"></composite:attribute>
+		<composite:attribute name="placeholder" type="java.lang.String"></composite:attribute>
+	</composite:interface>
+
+	<!-- IMPLEMENTATION -->
+	<composite:implementation>
+		<p:inputMask mask="(999) 999 99 99"  
+					id="#{cc.attrs.id}" 
+					value="#{cc.attrs.value}"
+					required="#{cc.attrs.required}" 
+					requiredMessage="#{cc.attrs.requiredMessage}"
+					placeholder="#{cc.attrs.placeholder}"
+					/>
+	</composite:implementation>
+
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c8="http://java.sun.com/jsf/composite/composite">
+
+
+<!-- INTERFACE -->
+<composite:interface>
+	<composite:attribute name="id" type="java.lang.String"></composite:attribute>
+	<composite:attribute name="value"
+		type="com.jarvis.model.entity.EmployeeFirm"></composite:attribute>
+	<composite:attribute name="password2" type="java.lang.String"></composite:attribute>
+	<composite:attribute name="newUser" type="java.lang.Boolean"
+		required="true"></composite:attribute>
+</composite:interface>
+
+<!-- IMPLEMENTATION -->
+<composite:implementation>
+	<p:panelGrid columns="2" layout="grid"
+		styleClass="ui-panelgrid-blank form-group">
+
+		<p:outputPanel>
+			<span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+			<p:inputText id="name" placeholder="Üye Adı"
+				value="#{cc.attrs.value.employee.name}" required="true"
+				requiredMessage="Adınızı Giriniz" />
+		</p:outputPanel>
+
+		<p:outputPanel>
+			<span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+			<p:inputText id="surname" placeholder="Üye Soyadı"
+				value="#{cc.attrs.value.employee.surname}" required="true"
+				requiredMessage="Soyadınızı Giriniz" />
+		</p:outputPanel>
+
+		<p:outputPanel>
+			<span class="ui-inputgroup-addon"><i
+				class="fa fa-phone-square"></i></span>
+			<c8:mobileNo id="mobileno" placeholder="Cep Telefonu"
+				value="#{cc.attrs.value.employee.mobileNo}" required="true"
+				requiredMessage="Cep Telefonu Giriniz" />
+		</p:outputPanel>
+
+		<p:outputPanel>
+			<span class="ui-inputgroup-addon"><i class="ui-icon-mail-open"></i></span>
+			<p:inputText id="email" value="#{cc.attrs.value.employee.eMail}"
+				placeholder="E-Posta Adresi" required="true"
+				requiredMessage="E-Posta Adresi Giriniz" />
+		</p:outputPanel>
+
+		<p:outputPanel rendered="#{cc.attrs.newUser}">
+			<span class="ui-inputgroup-addon"><i class="fa fa-key"></i></span>
+			<p:password id="pass" value="#{cc.attrs.value.employee.password}"
+				placeholder="Şifre" required="true" requiredMessage="Şifre Giriniz"
+				rendered="#{cc.attrs.newUser}"
+				title="Şifreniz 4 adet rakamdan oluşmalıdır" />
+			<p:tooltip for="pass" showEvent="focus" hideEvent="blur" />
+		</p:outputPanel>
+
+		<p:outputPanel rendered="#{cc.attrs.newUser}">
+			<span class="ui-inputgroup-addon"><i class="fa fa-key"></i></span>
+			<p:password id="pass2" value="#{cc.attrs.password2}"
+				placeholder="Şifre (Tekrar)" required="true"
+				requiredMessage="Şifre (Tekrar) Giriniz"
+				rendered="#{cc.attrs.newUser}"
+				title="Şifreniz 4 adet rakamdan oluşmalıdır" />
+			<p:tooltip for="pass2" showEvent="focus" hideEvent="blur" />
+		</p:outputPanel>
+
+		<p:outputPanel rendered="#{cc.attrs.newUser}">
+			<span class="ui-inputgroup-addon"><i class="fa fa-building"></i></span>
+			<p:inputText id="firmCode" value="#{cc.attrs.value.firm.password}"
+				placeholder="Firma Kodu" required="true"
+				requiredMessage="Firma Kodu Giriniz" rendered="#{cc.attrs.newUser}" />
+		</p:outputPanel>
+
+		<p:outputPanel>
+			<span class="ui-inputgroup-addon"><i class="fa fa-graduation-cap"></i></span>
+			<p:selectOneMenu id="ws" value="#{cc.attrs.value.workStatu}">
+				<f:selectItem noSelectionOption="true" itemLabel="Kullanıcı Tipi"
+					itemValue="" />
+				<f:selectItems value="#{typeBean.listWorkStatu}" var="workStatu"
+					itemValue="#{workStatu}" itemLabel="#{workStatu.displayName}"></f:selectItems>
+			</p:selectOneMenu>
+		</p:outputPanel>
+
+	</p:panelGrid>
+</composite:implementation>
+
+</html>

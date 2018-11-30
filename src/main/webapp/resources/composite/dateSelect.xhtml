@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:p="http://primefaces.org/ui">
+		
+
+	<!-- INTERFACE -->
+	<composite:interface>
+		<composite:attribute name="value" type="java.util.Date"></composite:attribute>
+		<composite:attribute name="pattern" type="java.lang.String" default="dd.MM.yyyy"></composite:attribute>		
+		<composite:attribute name="required" type="boolean"></composite:attribute>
+		<composite:attribute name="requiredMessage" type="java.lang.String"></composite:attribute>
+		<composite:attribute name="placeholder" type="java.lang.String"></composite:attribute>
+	</composite:interface>
+
+	<!-- IMPLEMENTATION -->
+	<composite:implementation>
+		<p:calendar value="#{cc.attrs.value}" 
+					effect="fold" 
+					required="#{cc.attrs.required}" 
+					requiredMessage="#{cc.attrs.requiredMessage}" 
+					pattern="#{cc.attrs.pattern}"
+					placeholder="#{cc.attrs.placeholder}"
+					locale="tr"
+					timeZone="Europe/Istanbul"
+					/>
+	</composite:implementation>
+
+</html>

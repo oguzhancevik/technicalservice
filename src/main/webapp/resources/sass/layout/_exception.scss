@@ -1,0 +1,41 @@
+.exception-body {
+    background-color: #2d353c;
+    padding-top: 120px;
+    box-sizing: border-box;
+    
+    .exception-panel {
+        background-color: #f7f7f7;
+        width: 460px;
+        margin: 0 auto;
+        text-align: center;
+        padding: 60px 100px;
+        box-sizing: border-box;
+        border-bottom: 15px solid #e42a7b;
+        
+        img {
+            height: 107px;
+        }
+        
+        h1 {
+            font-size: 22px;
+            color: #545b61;
+            margin-bottom: 28px;
+        }
+        
+        p {
+            font-size: 15px;
+            margin: 0 0 72px 0px;
+        }
+    }
+}
+
+@media (max-width: 640px) {
+    .exception-body {
+        padding-top: 80px;
+            
+        .exception-panel {
+            width: 320px;
+            padding: 30px 50px;
+        }
+    }
+}

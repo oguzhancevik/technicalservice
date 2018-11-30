@@ -1,0 +1,352 @@
+.landing-body {
+    .landing-wrapper {
+        #header {
+            background-color: #f7f7f7;
+            height: 60px;
+            padding: 16px 0;
+            
+            > div {
+                width: 960px;
+                margin: 0 auto;
+                
+                #menu-button {
+                    display: none;
+                    color: #b3b3b3;
+                    font-size: 36px;
+                    float: right;
+                    margin-top: 10px;
+                    margin-right: 30px;
+                    @include transition(color .3s);
+                    
+                    &:hover {
+                        color: #999999;
+                    }
+                }
+                
+                img {
+                    width: 100px;
+                }
+                
+                ul {
+                    list-style-type: none;
+                    float: right;
+                    margin: 20px 0 0 0;
+                    padding: 0;
+                    
+                    li {
+                        float: left;
+                        padding-right: 12px;
+                        
+                        a {
+                            font-size: 14px;
+                            font-weight: 600;
+                            color: #767b7f;
+                            
+                            &:hover {
+                                color:#3192e1;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        #introduction {
+            height: 400px;
+            background-image: url("\#{resource['atlantis-layout:images/landing/mountain.png']}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            color: #ffffff;
+            text-align: center;
+            padding-top: 100px;
+            border-top: 10px solid #1b6bad;
+            
+            h2 {
+                border-bottom: 4px solid #ffffff;
+                display: inline-block;
+                padding-bottom: 5px;
+                margin-bottom: 5px;
+                font-weight: 300;
+            }
+            
+            h1 {
+                font-weight: 700;
+                margin-top: 10px;
+                margin-bottom: 40px;
+            }
+            
+            button {
+                padding: 6px 12px;
+                width: 125px;
+            }
+        }
+        
+        #features {
+            background-color: #f7f7f7;
+            padding: 50px 0;
+            
+            > div {
+                width: 960px;
+                margin: 0 auto;
+                
+                .ui-g-2 {
+                    padding-right: 24px;
+                }
+                
+                img {
+                    width: 65px;
+                }
+                
+                h3 {
+                    margin-top: 0;
+                }
+                
+                p {
+                    color: #545b61;
+                    padding-right: 36px;
+                }
+            }
+        }
+        
+        #statistics {
+            background-color: #2d353c;
+            padding: 40px 0;
+            border-top: 10px solid #1b6bad;
+            
+            > div {
+                width: 960px;
+                margin: 0 auto;
+                text-align: center;
+                
+                h2 {
+                    color: #ffffff;
+                    font-size: 20px;
+                    margin-top: 0;
+                }
+                
+                .ui-g-12 {
+                    padding-left: 26px;
+                    padding-right: 26px;
+
+                    h3 {
+                        color: #ffffff;
+                        font-size: 30px;
+                        margin-bottom: 20px;
+                    }
+                    
+                    p {
+                        border-top: 1px solid #b3b3b3;
+                        color: #b3b3b3;
+                        margin-top: 5px;
+                        padding-top: 10px;
+                    }
+                }
+            }
+        }
+        
+        #pricing {
+            background-color: #f7f7f7;
+            padding: 40px 0;
+            
+            > div {
+                width: 960px;
+                margin: 0 auto;
+                text-align: center;
+            
+                h2 {
+                    color: #2d353c;
+                    font-size: 20px;
+                    margin-top: 0;
+                }
+                
+                .ui-g-12 {
+                    h3 {
+                        color: #545b61;
+                        font-size: 16px;
+                    }
+                    
+                    .price {
+                        color: #3192e1;
+                        font-size: 50px;
+                        display: block;
+                        margin-bottom: 10px;
+                    }
+                    
+                    ul {
+                        list-style-type: none;
+                        padding:0;
+                        margin:20px 0 0 0;
+                        
+                        li {
+                            color: #767b7f; 
+                            font-size: 14px;  
+                            padding-top: 6px;
+                        }
+                    }
+                }
+            }
+        }
+        
+        #video {
+            background-color: #2d353c;
+            padding: 40px 0 60px 0;
+            border-top: 10px solid #1b6bad;
+            
+            h2 {
+                color: #ffffff;
+                font-size: 20px;
+                margin-top: 0;
+                margin-bottom: 20px;
+            }
+            
+            > div {
+                width: 960px;
+                margin: 0 auto;
+                text-align: center;
+            }
+        }
+        
+        #footer {
+            background-color: #f7f7f7;
+            padding: 40px 0;
+            
+            > div {
+                width: 960px;
+                margin: 0 auto;
+                
+                .logo {
+                    width: 100px;
+                    vertical-align: middle;
+                }
+                
+                .appname {
+                    margin-left: 20px;
+                    width: 150px;
+                    vertical-align: middle;
+                }
+                
+                .social {
+                    float: right;
+                    padding-top: 20px;
+                    
+                    i {
+                        color: #767b7f;
+                        font-size: 30px;
+                        margin-left: 30px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 1024px) {
+    .landing-body {
+        .landing-wrapper {
+            #header {
+                > div {
+                    width: 100%;
+                    
+                    img {
+                        margin-left: 30px;
+                    }
+                    
+                    #menu-button {
+                        display: block;
+                    }
+                    
+                    ul {
+                        display: none;
+                        float: none;
+                    }
+                }
+                
+                &.menu-active {
+                    height: auto;
+                    
+                    > div {
+                        ul {
+                            display: block;
+                            background-color: #f7f7f7;
+                            width: 100%;
+                            text-align: center;
+                            padding: 18px 0 6px 0;
+                            border-top: 10px solid #1b6bad;
+                            
+                            li {
+                                float: none;
+                                padding: 6px 0;
+                            }
+                        }
+                    }
+                    
+                }
+            }  
+            
+            #introduction, #features, #statistics, #pricing, #video, #footer > div {
+                width: 100%;
+                padding-right: 30px;
+                padding-left: 30px;
+                box-sizing: border-box;
+                
+                > div {
+                    width: 100%;
+                }
+            } 
+            
+            #features {
+                > div {
+                    .ui-g-2 {
+                        padding-right: 6px;
+                    }
+                    
+                    img {
+                        width: 40px;
+                    }
+                    
+                    p {
+                        padding-right: 0;
+                    }
+                }
+            }
+            
+            #pricing {
+                h3 {
+                    border-top: 1px solid #b3b3b3; 
+                    padding-top: 20px;                  
+                }
+            }
+                    
+            #video {           
+                iframe {
+                    width: 300px;
+                    height: 169px;
+                }
+            }
+            
+            #footer {           
+                > div {                    
+                    .logo {
+                        width: 50px;
+                    }
+                    
+                    .appname {
+                        margin-left: 20px;
+                        width: 75px;
+                    }
+                    
+                    .social {
+                        width: auto;
+                        padding-top: 10px;
+                        
+                        i {
+                            color: #767b7f;
+                            font-size: 16px;
+                            margin-left: 16px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

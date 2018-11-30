@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<!-- INTERFACE -->
+<composite:interface>
+	<composite:attribute name="value"
+		type="com.jarvis.model.entity.SubCategory" />
+	<composite:attribute name="disabled" type="java.lang.Boolean"
+		default="false" />
+	<composite:attribute name="required" type="java.lang.Boolean"
+		default="false" />
+	<composite:attribute name="requiredMessage" type="java.lang.String" />
+	<composite:attribute name="list" type="java.util.List" />
+	<composite:attribute name="update" type="java.lang.String" />
+</composite:interface>
+
+<!-- IMPLEMENTATION -->
+<composite:implementation>
+	<p:selectOneMenu value="#{cc.attrs.value}" var="t" filter="true"
+		filterMatchMode="contains" showCheckbox="true"
+		converter="omnifaces.SelectItemsConverter"
+		disabled="#{cc.attrs.disabled}" required="#{cc.attrs.required}"
+		requiredMessage="#{cc.attrs.requiredMessage}">
+		<f:selectItem noSelectionOption="true"
+			itemLabel="Alt Kategori Seçiniz" itemValue="" />
+		<f:selectItems value="#{cc.attrs.list}" var="subCategory"
+			itemLabel="#{subCategory.code} - #{subCategory.name}" itemValue="#{subCategory}" />
+		<p:column>
+			<h:outputText value="#{t.code}" />
+		</p:column>
+		<p:column>
+			<h:outputText value="#{t.name}" />
+		</p:column>
+		<p:ajax update="#{cc.attrs.update}" />
+	</p:selectOneMenu>
+</composite:implementation>
+
+</html>

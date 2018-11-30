@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:p="http://primefaces.org/ui">
+		
+
+	<!-- INTERFACE -->
+	<composite:interface>
+		<composite:attribute name="value" type="java.lang.Integer"/>
+		<composite:attribute name="disabled" type="java.lang.Boolean" default="false"></composite:attribute>
+		<composite:attribute name="required" type="java.lang.Boolean" default="false"></composite:attribute>
+		<composite:attribute name="requiredMessage" type="java.lang.String"></composite:attribute>
+	</composite:interface>
+
+	<!-- IMPLEMENTATION -->
+	<composite:implementation>
+        <p:selectOneMenu value="#{cc.attrs.value}" 
+        					converter="omnifaces.SelectItemsConverter"
+        					disabled="#{cc.attrs.disabled}"
+  							required="#{cc.attrs.required}"
+							requiredMessage="#{cc.attrs.requiredMessage}"
+							effect="fade"
+        					>
+            <f:selectItem noSelectionOption="true" itemLabel="Seçiniz" itemValue="" />
+            <f:selectItem itemLabel="OCAK" itemValue="0" />
+            <f:selectItem itemLabel="ŞUBAT" itemValue="1" />
+            <f:selectItem itemLabel="MART" itemValue="2" />
+            <f:selectItem itemLabel="NİSAN" itemValue="3" />
+            <f:selectItem itemLabel="MAYIS" itemValue="4" />
+            <f:selectItem itemLabel="HAZİRAN" itemValue="5" />
+            <f:selectItem itemLabel="TEMMUZ" itemValue="6" />
+            <f:selectItem itemLabel="AĞUSTOS" itemValue="7" />
+            <f:selectItem itemLabel="EYLÜL" itemValue="8" />
+            <f:selectItem itemLabel="EKİM" itemValue="9" />
+            <f:selectItem itemLabel="KASIM" itemValue="10" />
+            <f:selectItem itemLabel="ARALIK" itemValue="11" />
+        </p:selectOneMenu>
+	</composite:implementation>
+
+</html>
