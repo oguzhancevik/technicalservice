@@ -1,0 +1,103 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template/template.xhtml">
+
+	<ui:define name="title">Customer</ui:define>
+
+	<ui:define name="head">
+		<script type="text/javascript">
+			//<![CDATA[
+			function skinBar() {
+				this.cfg.shadow = false;
+				this.cfg.title = '';
+				this.cfg.seriesColors = [ '#68bafc', '#f97bb2' ];
+				this.cfg.grid = {
+					background : '#ffffff',
+					borderColor : '#ffffff',
+					gridLineColor : '#F5F5F5',
+					shadow : false
+				};
+				this.cfg.axesDefaults = {
+					borderWidth : 0.1,
+					borderColor : 'bdbdbd',
+					rendererOptions : {
+						textColor : '#666F77'
+					}
+				};
+				this.cfg.seriesDefaults = {
+					shadow : false,
+					lineWidth : 1,
+					renderer : $.jqplot.BarRenderer,
+					markerOptions : {
+						shadow : false,
+						size : 7,
+						style : 'circle'
+					}
+				}
+			}
+			//]]>
+		</script>
+		<style type="text/css">
+.main-content {
+	padding: 0;
+}
+</style>
+	</ui:define>
+
+	<ui:define name="content">
+		<div class="ui-g dashboard">
+			<div class="ui-g-12 ui-md-6 ui-lg-3">
+				<div class="ui-g card overview-box overview-box-1">
+					<div class="ui-g-4 overview-box-icon">
+						<i class="fa fa-inbox"></i>
+					</div>
+					<div class="ui-g-8">
+						<span class="overview-box-count">100</span>
+						<span class="overview-box-name">Text1</span>
+					</div>
+					<div class="ui-g-12 overview-box-footer"></div>
+				</div>
+			</div>
+			<div class="ui-g-12 ui-md-6 ui-lg-3">
+				<div class="ui-g card overview-box overview-box-2">
+					<div class="ui-g-4 overview-box-icon">
+						<i class="fa fa-users"></i>
+					</div>
+					<div class="ui-g-8">
+						<span class="overview-box-count">100</span>
+						<span class="overview-box-name">Text2</span>
+					</div>
+					<div class="ui-g-12 overview-box-footer"></div>
+				</div>
+			</div>
+			<div class="ui-g-12 ui-md-6 ui-lg-3">
+				<div class="ui-g card overview-box overview-box-3">
+					<div class="ui-g-4 overview-box-icon">
+						<i class="fa fa-cloud"></i>
+					</div>
+					<div class="ui-g-8">
+						<span class="overview-box-count">100</span>
+						<span class="overview-box-name">Text3</span>
+					</div>
+					<div class="ui-g-12 overview-box-footer"></div>
+				</div>
+			</div>
+			<div class="ui-g-12 ui-md-6 ui-lg-3">
+				<div class="ui-g card overview-box overview-box-4">
+					<div class="ui-g-4 overview-box-icon">
+						<i class="fa fa-key"></i>
+					</div>
+					<div class="ui-g-8">
+						<span class="overview-box-count">100</span> <span
+							class="overview-box-name">Text3</span>
+					</div>
+					<div class="ui-g-12 overview-box-footer"></div>
+				</div>
+			</div>
+
+		</div>
+	</ui:define>
+
+</ui:composition>

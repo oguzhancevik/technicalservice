@@ -7,11 +7,29 @@
 
 
 	<div class="topbar">
-
+		<h:form id="topForm">		
 		<div class="logo">
 			<p:graphicImage name="images/logo.svg" width="40" height="40"
 				library="atlantis-layout" />
 		</div>
+
+
+		<a id="topbar-menu-button" href="#"> <i class="fa fa-bars"></i>
+		</a>
+
+
+		<ul class="topbar-menu fadeInDown animated">
+
+						<p:commandLink action="#{loginAuthenticator.invalidateSession()}">
+							<i class="fa fa-fw fa-close"></i>
+							<span style="color:white">Çıkış</span>
+						</p:commandLink>
+
+			
+			
+		
+		</ul>
+		</h:form>
 
 	</div>
 

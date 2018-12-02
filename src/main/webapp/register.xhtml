@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c8="http://java.sun.com/jsf/composite/composite">
+
+<h:head>
+	<meta http-equiv="refresh"
+		content="#{loginBean.redirectPage == 'register' ? '4;URL=register.jsf' : ( loginBean.redirectPage == 'success' ? '4;URL=giris.jsf?faces-redirect=true' : '')}" />
+	<f:facet name="first">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="theme-color"
+			content="#{guestPreferences.themeColors[guestPreferences.layout]}" />
+	</f:facet>
+	<title><ui:insert name="title">TECHNICAL SERVICE</ui:insert></title>
+	<h:outputScript name="js/nanoscroller.js" library="atlantis-layout" />
+	<h:outputScript name="js/layout.js" library="atlantis-layout" />
+	<ui:insert name="head" />
+</h:head>
+
+<h:body styleClass="login-body">
+
+	<h:form id="form">
+		<p:growl id="messagePanel" showDetail="true" sticky="true" />
+
+		<div class="login-panel">
+			<div class="ui-g">
+				<div class="ui-g-12 logo-container">
+					<h2>Müşteri Kayıt</h2>
+				</div>
+				<div class="ui-g-12 ui-fluid">
+					<p:panelGrid columns="2" layout="grid"
+						styleClass="ui-panelgrid-blank form-group">
+						<f:facet name="header">KİŞİSEL BİLGİLER</f:facet>
+						<p:outputPanel>
+							<span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+							<p:inputText id="name" placeholder="İsim"
+								value="#{loginBean.customer.name}" required="true"
+								requiredMessage="Adınızı Giriniz" />
+						</p:outputPanel>
+
+						<p:outputPanel>
+							<span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+							<p:inputText id="surname" placeholder="Soyisim"
+								value="#{loginBean.customer.surname}" required="true"
+								requiredMessage="Soyadınızı Giriniz" />
+						</p:outputPanel>
+
+
+						<p:outputPanel>
+							<p:inputText id="email" value="#{loginBean.customer.user.email}"
+								placeholder="Email" required="true"
+								requiredMessage="E-Posta Adresi Giriniz" />
+						</p:outputPanel>
+
+
+						<p:outputPanel>
+							<c8:mobileNo id="mobileno" placeholder="Cep Telefonu"
+								value="#{loginBean.customer.mobileNo}" required="true"
+								requiredMessage="Cep Telefonu Giriniz" />
+						</p:outputPanel>
+
+					</p:panelGrid>
+				</div>
+				<div class="ui-g-12 ui-fluid">
+					<p:panelGrid columns="2" layout="grid"
+						styleClass="ui-panelgrid-blank form-group">
+						<f:facet name="header">ÜYELİK BİLGİLERİ</f:facet>
+
+
+
+						<p:outputPanel>
+							<span class="ui-inputgroup-addon"><i class="fa fa-key"></i></span>
+							<p:password id="pass" value="#{loginBean.customer.user.password}"
+								placeholder="Şifre" required="true"
+								requiredMessage="Şifre Giriniz"
+								title="Şifreniz 4 adet rakamdan oluşmalıdır" />
+							<p:tooltip for="pass" showEvent="focus" hideEvent="blur" />
+						</p:outputPanel>
+
+						<p:outputPanel>
+							<span class="ui-inputgroup-addon"><i class="fa fa-key"></i></span>
+							<p:password id="pass2" value="#{loginBean.pass2}"
+								placeholder="Şifre (Tekrar)" required="true"
+								requiredMessage="Şifre (Tekrar) Giriniz"
+								title="Şifreniz 4 adet rakamdan oluşmalıdır" />
+							<p:tooltip for="pass2" showEvent="focus" hideEvent="blur" />
+						</p:outputPanel>
+
+					</p:panelGrid>
+				</div>
+				<div class="ui-g-12">
+					<p:panelGrid columns="2" styleClass="ui-panelgrid-blank form-group">
+						<p:commandButton value="VAZGEÇ"
+							action="/login.xhtml?faces-redirect=true" process="@this"
+							styleClass="pink-btn" />
+						<p:commandButton value="ÜYE OL" action="#{loginBean.save()}"
+							process=":form" onclick="start()" oncomplete="stop()"
+							update="messagePanel" styleClass="green-btn" />
+					</p:panelGrid>
+				</div>
+			</div>
+		</div>
+
+		<h:outputStylesheet name="css/layout-#{guestPreferences.layout}.css"
+			library="atlantis-layout" />
+
+	</h:form>
+
+</h:body>
+
+</html>

@@ -1,15 +1,72 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui"
-	template="/WEB-INF/template/template.xhtml">
+	xmlns:p="http://primefaces.org/ui">
 
-	<ui:define name="title">Login</ui:define>
+<h:head>
+	<f:facet name="first">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="theme-color"
+			content="#{guestPreferences.themeColors[guestPreferences.layout]}" />
+	</f:facet>
+	<title><ui:insert name="title">TECHNICAL SERVICE</ui:insert></title>
+	<h:outputScript name="js/nanoscroller.js" library="atlantis-layout" />
+	<h:outputScript name="js/layout.js" library="atlantis-layout" />
+	<ui:insert name="head" />
+</h:head>
 
+<h:body styleClass="login-body">
+	<form name="loginForm" method="POST" action="j_security_check">
+		<div class="login-panel ui-fluid">
+			<div class="ui-g">
+				<div class="ui-g-12 logo-container">
+					<p:graphicImage name="images/logo.svg"
+						width="100" height="100" library="atlantis-layout" />
+					<h2>TECHNICAL SERVICE</h2>
+					<h1>Üye Girişi</h1>
+				</div>
+				<div class="ui-g-12">
+					<p:inputText id="j_username" placeholder="Kullanıcı"
+						style="font-size:80%; padding: 5px !important;" />
+				</div>
+				<div class="ui-g-12">
+					<p:password id="j_password" placeholder="Şifre" feedback="false"
+						style="font-size:80%; padding: 5px !important;" />
+				</div>
+				<div class="ui-g-12 button-container">
+					<input id="submit" type="submit" value="Giriş" name="submit"
+						style="background-color: green; border-color: #0ca533; width: 100%; color: white; float: left; padding: 5px !important; box-sizing: border-box; font-size: 100%" />
+				</div>
 
-	<ui:define name="content">
-		
-	</ui:define>
+				<div class="ui-g-12 button-container">
+					<div class="ui-gi-6 contact-actions">
+						<i class="fa fa-key"></i> <a href="forgotPassword.jsf">Şifremi
+							Unuttum</a>
+					</div>
+					<br />
+					<div class="ui-gi-6 contact-actions">
+						<i class="fa fa-user-plus"></i> <a href="register.jsf">Üye Ol</a>
+					</div>
+				</div>
 
-</ui:composition>
+			</div>
+			<h:panelGroup
+				rendered="#{requestScope['javax.servlet.forward.servlet_path'] == '/j_security_check' or requestScope['javax.servlet.forward.servlet_path'] == '/admin/j_security_check' or requestScope['javax.servlet.forward.servlet_path'] == '/customer/j_security_check'}">
+				<div class="ui-g-12" style="background-color: #B61212; color: white">
+					<div>Lütfen bilgilerinizi kontrol ederek tekrar deneyiniz.</div>
+				</div>
+			</h:panelGroup>
+		</div>
+
+		<h:outputStylesheet name="css/layout-#{guestPreferences.layout}.css"
+			library="atlantis-layout" />
+	</form>
+</h:body>
+
+</html>

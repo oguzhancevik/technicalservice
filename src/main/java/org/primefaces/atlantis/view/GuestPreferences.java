@@ -51,7 +51,7 @@ public class GuestPreferences implements Serializable {
         themeColors.put("black", "#545b61");
     }
     
-	public String getTheme() {		
+	public String getTheme() {	
 		return theme;
 	}
     
