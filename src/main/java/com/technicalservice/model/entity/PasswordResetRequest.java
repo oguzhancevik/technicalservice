@@ -7,6 +7,9 @@ import javax.persistence.Table;
 
 import com.technicalservice.model.base.ExtendedModel;
 
+/**
+ * @author oguzhan
+ */
 @Entity
 @Table
 public class PasswordResetRequest extends ExtendedModel {

@@ -13,6 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.technicalservice.model.type.MemberStatu;
 
+/**
+ * Login yetki işlemlerini gerçekleştiren sınıftır.
+ * 
+ * @author oguzhan
+ */
 @ManagedBean
 @SessionScoped
 public class LoginAuthenticator {

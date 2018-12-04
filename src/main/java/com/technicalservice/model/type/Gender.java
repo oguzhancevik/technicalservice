@@ -1,5 +1,8 @@
 package com.technicalservice.model.type;
 
+/**
+ * @author oguzhan
+ */
 public enum Gender {
 
 	MAN("ERKEK"), WOMAN("KADIN");

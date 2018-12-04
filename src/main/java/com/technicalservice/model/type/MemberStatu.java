@@ -1,5 +1,8 @@
 package com.technicalservice.model.type;
 
+/**
+ * @author oguzhan
+ */
 public enum MemberStatu {
 	WAITING("ONAY BEKLİYOR"), APPROVED("ONAYLANDI"), DENIED("REDDEDİLDİ"), BLOCKED("BLOKELİ");
 

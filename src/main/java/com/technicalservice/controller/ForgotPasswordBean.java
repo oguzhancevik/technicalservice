@@ -40,7 +40,7 @@ public class ForgotPasswordBean {
 	private String password;
 	private String password2;
 	private String f;
-	PasswordResetRequest passReset;
+	private PasswordResetRequest passReset;
 	private boolean process = false;
 	private String redirectPage;
 	public static final String emailNotExist = "Bu mail adresine ait bir kayıt bulunmamaktadır.";
@@ -235,6 +235,14 @@ public class ForgotPasswordBean {
 
 	public void setF(String f) {
 		this.f = f;
+	}
+
+	public PasswordResetRequest getPassReset() {
+		return passReset;
+	}
+
+	public void setPassReset(PasswordResetRequest passReset) {
+		this.passReset = passReset;
 	}
 
 	public static String getNottoken() {

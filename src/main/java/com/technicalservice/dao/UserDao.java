@@ -1,12 +1,24 @@
 package com.technicalservice.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 
 import com.technicalservice.dao.base.BaseDao;
 import com.technicalservice.model.entity.User;
 
+/**
+ * User nesnesi için database işlemlerinin yapıldığı sınıftır.
+ * 
+ * @author oguzhan
+ *
+ */
 @Stateless
 public class UserDao extends BaseDao<User> {
 
@@ -21,19 +33,53 @@ public class UserDao extends BaseDao<User> {
 	private static final String passwordMustContainAllCases = "GİRİLEN ŞİFRE SADECE RAKAM İÇERMELİDİR!";
 
 	/**
+	 * 
+	 * @param email
+	 *            Kulanıcının giriş yapacağı email
+	 * @param password
+	 *            Kullanıcı şifresi
+	 * @return email ve password ile kayıtlı kullanıcı var ise User nesnesini
+	 *         döndürür.
+	 */
+	public User authenticate(String email, String password) {
+		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+		CriteriaQuery<User> cq = cb.createQuery(User.class);
+		Root<User> root = cq.from(User.class);
+
+		List<Predicate> conditions = new ArrayList<Predicate>();
+		conditions.add(cb.equal(root.get("email"), email));
+		conditions.add(cb.equal(root.get("password"), password));
+
+		if (conditions.size() > 0) {
+			Predicate[] predicates = new Predicate[conditions.size()];
+			conditions.toArray(predicates);
+			cq.where(predicates);
+		}
+
+		TypedQuery<User> q = entityManager.createQuery(cq);
+		List<User> results = q.getResultList();
+
+		if (results.size() > 0) {
+			User user = results.get(0);
+			return user;
+		}
+		return null;
+	}
+
+	/**
 	 * Girilen iki şifreyi kontrol eder. İki şifre eşit ise ve 4 rakamdan oluşutor
-	 * ise "success" döner. Eğer şifreler uyuşmuyor ise "GİRİLEN ŞİFRELER EŞLEŞMİYOR!"
-	 * döner. Şifre uzunlukları 4'e eşit değil ise "GİRİLEN ŞİFRE 4 RAKAMDAN OLUŞMALIDIR!" döner.
-	 * Şifre rakam haricinde başka karakter içeriyor ise
-	 * "GİRİLEN ŞİFRE SADECE RAKAM İÇERMELİDİR!" döner.
+	 * ise "success" döner. Eğer şifreler uyuşmuyor ise "GİRİLEN ŞİFRELER
+	 * EŞLEŞMİYOR!" döner. Şifre uzunlukları 4'e eşit değil ise "GİRİLEN ŞİFRE 4
+	 * RAKAMDAN OLUŞMALIDIR!" döner. Şifre rakam haricinde başka karakter içeriyor
+	 * ise "GİRİLEN ŞİFRE SADECE RAKAM İÇERMELİDİR!" döner.
 	 * 
 	 * @param password
 	 *            Kullanıcının girdiği 1. şifre.
 	 * @param password2
 	 *            Kullanıcının girdiği 2. şifre (Doğrulama şifresi).
 	 * @see #containsAllCases(String)
-	 * @return "succes", "GİRİLEN ŞİFRELER EŞLEŞMİYOR!", "GİRİLEN ŞİFRE 4 RAKAMDAN OLUŞMALIDIR!",
-	 *        "GİRİLEN ŞİFRE SADECE RAKAM İÇERMELİDİR!" döner.
+	 * @return "succes", "GİRİLEN ŞİFRELER EŞLEŞMİYOR!", "GİRİLEN ŞİFRE 4 RAKAMDAN
+	 *         OLUŞMALIDIR!", "GİRİLEN ŞİFRE SADECE RAKAM İÇERMELİDİR!" döner.
 	 */
 	public String controlPassword(String password, String password2) {
 		if (password != null && password2 != null) {

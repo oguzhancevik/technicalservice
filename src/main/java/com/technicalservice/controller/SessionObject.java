@@ -12,6 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 import com.technicalservice.dao.UserDao;
 import com.technicalservice.model.entity.User;
 
+/**
+ * Session işlemlerini tutan sınıftır.
+ * 
+ * @author oguzhan
+ *
+ */
 @ManagedBean(name = "sessionObject")
 @SessionScoped
 public class SessionObject implements Serializable {
@@ -24,7 +30,7 @@ public class SessionObject implements Serializable {
 	private UserDao userDao;
 
 	/**
-	 * @return login olan kullanıcının mail bilgisine göre User bilgisini döndürür. 
+	 * @return login olan kullanıcının mail bilgisine göre User bilgisini döndürür.
 	 */
 	public User getUser() {
 		if (user == null) {

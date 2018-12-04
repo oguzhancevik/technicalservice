@@ -15,6 +15,11 @@ import javax.persistence.Transient;
 import com.technicalservice.model.base.ExtendedModel;
 import com.technicalservice.model.type.Gender;
 
+/**
+ * 
+ * @author oguzhan
+ *
+ */
 @Entity
 @Table
 public class Customer extends ExtendedModel {

@@ -3,6 +3,9 @@ package com.technicalservice.resource;
 import java.io.InputStream;
 import java.util.Properties;
 
+/**
+ * @author oguzhan
+ */
 public class ExternalResource {
 
 	private Properties properties;

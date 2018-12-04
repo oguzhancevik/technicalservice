@@ -8,6 +8,11 @@ import javax.ejb.Stateless;
 import com.technicalservice.dao.base.BaseDao;
 import com.technicalservice.model.entity.PasswordResetRequest;
 
+/**
+ * PasswordResetRequest nesnesi için database işlemlerinin yapıldığı sınıftır.
+ * @author oguzhan
+ *
+ */
 @Stateless
 @LocalBean
 public class PasswordResetRequestDao extends BaseDao<PasswordResetRequest> {

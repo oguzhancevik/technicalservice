@@ -10,7 +10,11 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.Transient;
 import javax.persistence.Version;
 
-
+/**
+ * 
+ * @author oguzhan
+ *
+ */
 @MappedSuperclass
 public abstract class ExtendedModel implements Serializable, Cloneable {
 

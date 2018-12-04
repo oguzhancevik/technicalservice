@@ -10,6 +10,15 @@ import javax.persistence.PersistenceContext;
 
 import com.technicalservice.model.base.ExtendedModel;
 
+/**
+ * Temel database işlemleri için kullanılan sınıftır.
+ * 
+ * @author oguzhan
+ *
+ * @param <T>
+ *            {@link com.technicalservice.model.base.ExtendedModel} den türeyen
+ *            alt sınıftır.
+ */
 @Stateless
 public abstract class BaseDao<T extends ExtendedModel> implements Serializable {
 

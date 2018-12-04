@@ -8,6 +8,9 @@ import javax.persistence.Table;
 import com.technicalservice.model.base.ExtendedModel;
 import com.technicalservice.model.type.MemberStatu;
 
+/**
+ * @author oguzhan
+ */
 @Entity
 @Table(name = "users")
 public class User extends ExtendedModel {
@@ -19,8 +22,6 @@ public class User extends ExtendedModel {
 	private String password;
 
 	private String role;
-
-	private String icon;
 
 	@Enumerated(EnumType.STRING)
 	private MemberStatu memberStatu;
@@ -53,14 +54,6 @@ public class User extends ExtendedModel {
 
 	public void setRole(String role) {
 		this.role = role;
-	}
-
-	public String getIcon() {
-		return icon;
-	}
-
-	public void setIcon(String icon) {
-		this.icon = icon;
 	}
 
 	public MemberStatu getMemberStatu() {

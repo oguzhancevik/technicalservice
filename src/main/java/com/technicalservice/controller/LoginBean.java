@@ -15,6 +15,11 @@ import com.technicalservice.model.entity.User;
 import com.technicalservice.model.type.MemberStatu;
 import com.technicalservice.util.UtilLog;
 
+/**
+ * Kullanıcının kayıt işlemlerini gerçekleştiren sınıftır.
+ * 
+ * @author oguzhan
+ */
 @ManagedBean(name = "loginBean")
 @ViewScoped
 public class LoginBean implements Serializable {

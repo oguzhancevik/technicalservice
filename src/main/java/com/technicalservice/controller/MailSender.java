@@ -19,6 +19,12 @@ import javax.mail.internet.MimeMultipart;
 import com.technicalservice.resource.ExternalResource;
 import com.technicalservice.util.UtilLog;
 
+/**
+ * Mail gönderme işlemlerini yapan sınıftır.
+ * 
+ * @author oguzhan
+ *
+ */
 public class MailSender {
 
 	/**

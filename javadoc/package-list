@@ -1,0 +1,13 @@
+com.technicalservice.controller
+com.technicalservice.dao
+com.technicalservice.dao.base
+com.technicalservice.filter
+com.technicalservice.model.base
+com.technicalservice.model.entity
+com.technicalservice.model.pojo
+com.technicalservice.model.rest
+com.technicalservice.model.type
+com.technicalservice.resource
+com.technicalservice.rest
+com.technicalservice.servlet
+com.technicalservice.util

@@ -2,6 +2,9 @@ package com.technicalservice.resource;
 
 import com.technicalservice.util.UtilLog;
 
+/**
+ * @author oguzhan
+ */
 public class Prefix {
 
 	private static String pathBegin;

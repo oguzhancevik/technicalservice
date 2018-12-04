@@ -9,11 +9,16 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
+/**
+ * 
+ * @author oguzhan
+ *
+ */
 public class CharacterEncodingFilter implements Filter {
 
 	/**
-	 * İstemci ve sunucu tarafında Türkçe karakter sorunun ortadan kalması bu
-	 * fonksiyon kulanılır.
+	 * Sunucu ve istemci tarafında türkçe karakter sorunun ortadan kalkması için
+	 * uygulanır.
 	 */
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
 			throws IOException, ServletException {
