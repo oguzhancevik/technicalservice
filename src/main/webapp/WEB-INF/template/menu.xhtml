@@ -1,13 +1,34 @@
-<ui:composition 
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:p="http://primefaces.org/ui"
-    xmlns:pa="http://primefaces.org/atlantis">
-    
-    <div class="layout-sidebar #{guestPreferences.darkMenu ? 'layout-sidebar-dark': ''}">
-             
-    </div>
-    
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pa="http://primefaces.org/atlantis">
+
+	<h:form id="menu-form">
+		<div
+			class="layout-sidebar #{guestPreferences.darkMenu ? 'layout-sidebar-dark': ''}">
+
+
+			<pa:tabMenu rendered="#{loginAuthenticator.roleAdmin}">
+				<pa:tab icon="fa fa-cube" title="İşlemler">
+					<pa:menu widgetVar="me">
+						<p:menuitem id="om_dashboard" value="Anasafya"
+							icon="fa fa-fw fa-home" outcome="/admin/dashboard" />
+
+						<p:submenu id="um_customization2" label="Kullanıcı İşlemleri"
+							icon="fa fa-fw fa-users">
+							<p:menuitem value="Müşteriler" icon="fa fa-fw fa-user"
+								outcome="/admin/customers" />
+							<p:menuitem value="Adminler" icon="fa fa-fw fa-check-circle"
+								outcome="/admin/admins" />
+								
+								
+						</p:submenu>
+					</pa:menu>
+				</pa:tab>
+			</pa:tabMenu>
+		</div>
+
+	</h:form>
 </ui:composition>

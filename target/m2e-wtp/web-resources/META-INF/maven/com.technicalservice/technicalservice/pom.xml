@@ -59,6 +59,16 @@
 			<version>1.0.10</version>
 		</dependency>
 
+		<!-- Omnifaces (SelectOneMenu için modelin listelenmesi için gerekli) -->
+		<dependency>
+			<groupId>org.omnifaces</groupId>
+			<artifactId>omnifaces</artifactId>
+			<version>1.7</version>
+		</dependency>
+
+
+
+
 		<!-- Hibernate & JPA -->
 		<dependency>
 			<groupId>org.hibernate</groupId>

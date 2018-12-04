@@ -7,30 +7,38 @@
 
 
 	<div class="topbar">
-		<h:form id="topForm">		
 		<div class="logo">
 			<p:graphicImage name="images/logo.svg" width="40" height="40"
 				library="atlantis-layout" />
 		</div>
 
-
-		<a id="topbar-menu-button" href="#"> <i class="fa fa-bars"></i>
-		</a>
-
-
 		<ul class="topbar-menu fadeInDown animated">
-
-						<p:commandLink action="#{loginAuthenticator.invalidateSession()}">
-							<i class="fa fa-fw fa-close"></i>
-							<span style="color:white">Çıkış</span>
-						</p:commandLink>
-
+			<li class="profile-item">
 			
+				<p:commandLink action="#{loginAuthenticator.invalidateSession()}">
+					<i class="fa fa-fw fa-close"></i>
+					<span>Çıkış</span>
+				</p:commandLink>
 			
-		
+			</li>
+
+
+			<li class="profile-item">
+				
+				<!-- Admin Profil Buton -->
+				<p:commandLink action="#{adminListBean.updatePage(sessionObject.user,'admin.jsf')}"
+					rendered="#{loginAuthenticator.roleAdmin}">
+					<i class="fa fa-fw fa-user"></i>
+					<span>Profil</span>
+				</p:commandLink>
+				
+				<!-- Customer Profil Buton -->
+				<p:commandLink rendered="#{loginAuthenticator.roleCustomer}">
+					<i class="fa fa-fw fa-user"></i>
+					<span>Profil</span>
+				</p:commandLink>
+			
+			</li>
 		</ul>
-		</h:form>
-
 	</div>
-
 </ui:composition>

@@ -1,0 +1,98 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c8="http://java.sun.com/jsf/composite/composite"
+	xmlns:o="http://omnifaces.org/ui" 
+	xmlns:pa="http://primefaces.org/atlantis">
+
+	<div class="topbar">
+		<div class="logo">
+			<p:commandLink action="/admin/dashboard?faces-redirect=true" rendered="#{loginAuthenticator.roleAdmin}">
+				<p:graphicImage name="images/logo-colored.png"
+					library="atlantis-layout-admin" >
+					</p:graphicImage>
+			</p:commandLink>
+			<p:commandLink action="/user/dashboard?faces-redirect=true" rendered="#{loginAuthenticator.roleUser}">
+				<p:graphicImage name="images/logo-colored.png"
+					library="atlantis-layout-admin" >
+					</p:graphicImage>
+			</p:commandLink>		
+		</div>
+
+
+		<a id="topbar-menu-button" href="#"> <i class="fa fa-bars"></i>
+		</a>
+
+
+		<ul class="topbar-menu fadeInDown animated">
+			<p:commandLink id="orderCount" 
+							value="SİPARİŞ #{orderBean.newOrderSize}" 
+							style="color:#{orderBean.newOrderSize gt 0 ? 'yellow':'white'}"
+							action="#{menuBean.redirectPage('/user/orders.jsf')}"
+							rendered="#{loginAuthenticator.roleUser}"/>
+
+			<h:outputText value=" | " style="color:white" rendered="#{loginAuthenticator.roleUser}"/>
+
+			<p:commandLink value="PUANIM #{utilFormatBean.formatNumber(sessionObject.employeeFirm.score, '###')}"
+							action="#{scoreBean.fillListScoreTransaction(sessionObject.employeeFirm)}"
+							style="color:white"
+							oncomplete="PF('widTrans').show()"
+							update="dlgTrans"
+							rendered="#{loginAuthenticator.roleUser}">
+			</p:commandLink>
+			
+			<ui:include src="/both/scoreTrx.xhtml" />
+			
+
+			<li class="profile-item">
+				<a href="#">
+					<div class="profile-image">
+						<p:outputPanel id="img">
+							<p:graphicImage
+								value="/image?name=#{sessionObject.employee.icon}"
+								library="atlantis-layout-admin"
+								rendered="#{sessionObject.employee.icon != null}" />
+							<p:graphicImage name="images/profile-image.png"
+								library="atlantis-layout-admin"
+								rendered="#{sessionObject.employee.icon == null}" />
+						</p:outputPanel>
+					</div>
+					<div class="profile-info">
+						<span class="topbar-item-name profile-name">#{sessionObject.employee.fullName}</span>
+						<span class="topbar-item-name profile-role">#{sessionObject.selectedWorkStatu.displayName}</span>
+					</div>
+				</a>
+
+				<ul class="animated">
+					<h:form id="topForm">		
+					<li role="menuitem">
+						<p:commandLink action="#{menuBean.redirectPage('/admin/profile.jsf',sessionObject.employeeFirm)}">
+							<i class="fa fa-fw fa-user"></i>
+							<span>Profil</span>
+						</p:commandLink>
+					</li>
+					<li role="menuitem">
+						<a href="#"> 
+							<i class="fa fa-fw fa-cog"></i> 
+							<span>Ayarlar</span>
+						</a>
+					</li>
+					<li role="menuitem">
+						<p:commandLink action="#{loginAuthenticator.logout()}">
+							<i class="fa fa-fw fa-close"></i>
+							<span>Çıkış</span>
+						</p:commandLink>
+					</li>
+					</h:form>
+				</ul>
+
+			</li>
+					
+		</ul>
+			
+
+	</div>
+
+</ui:composition>

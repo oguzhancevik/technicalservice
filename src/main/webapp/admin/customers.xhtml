@@ -1,0 +1,129 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c8="http://java.sun.com/jsf/composite/composite"
+	template="/WEB-INF/template/template.xhtml">
+
+
+	<ui:define name="head">
+		<style type="text/css">
+.APPROVED {
+	background-color: lightgreen !important;
+	background-image: none;
+}
+
+.BLOCKED {
+	background-color: orange !important;
+	background-image: none;
+}
+
+.WAITING {
+	background-color: lightblue !important;
+	background-image: none;
+}
+
+.DENIED {
+	background-color: red !important;
+	background-image: none;
+}
+
+.pasif-nodisplay {
+	display: none;
+}
+</style>
+
+	</ui:define>
+
+	<ui:define name="title">Tüm Müşteriler</ui:define>
+
+	<ui:define name="content">
+		<h:form id="form">
+			<p:importEnum type="com.technicalservice.model.type.MemberStatu"
+				var="MemberStatu" allSuffix="ALL_ENUM_VALUES" />
+			<p:growl id="growl" showDetail="true" sticky="true" />
+			<div class="ui-g dashboard">
+				<div class="ui-g-12 ui-md-6 ui-lg-12 card">
+					<h1>Tüm Müşteriler</h1>
+
+					<p:dataTable value="#{customerListBean.listModel}" var="data"
+						reflow="true" rowIndexVar="rowInd" paginator="true" rows="10">
+
+
+
+						<p:column headerText="Sıra" width="5%">
+							<h:outputText value="#{rowInd+1}" />
+						</p:column>
+
+						<p:column headerText="İşlem" exportable="true" width="12%">
+							<p:commandLink value="GÜNCELLE"
+								action="#{customerListBean.updatePage(data, 'customer.jsf')}"
+								process="@this" style="color:blue" />
+							<p:spacer width="10" height="10" />
+							<p:commandLink value="SİL"
+								action="#{customerListBean.remove(data)}" update=":form"
+								style="color:red" immediate="true">
+								<p:confirm header="ONAY" message="Bu kayıt silinsin mi?"
+									icon="ui-icon-alert" />
+							</p:commandLink>
+						</p:column>
+
+						<p:column headerText="İsim">
+							<h:outputText value="#{data.name}" />
+						</p:column>
+
+						<p:column headerText="Soyisim" width="10%">
+							<h:outputText value="#{data.surname}" />
+						</p:column>
+
+						<p:column headerText="Email">
+							<h:outputText value="#{data.user.email}" />
+						</p:column>
+
+						<p:column headerText="Telefon" width="10%">
+							<h:outputText value="#{data.mobileNo}" />
+						</p:column>
+
+						<p:column headerText="Role" width="8%">
+							<h:outputText value="#{data.user.role}" />
+						</p:column>
+
+						<p:column headerText="Statu" width="10%">
+							<h:outputText value="#{data.user.memberStatu.displayName}" />
+						</p:column>
+
+						<p:column headerText="Onay/Ret"  width="10%">
+							<p:commandButton value="BLOKE"
+								action="#{customerListBean.save(data, MemberStatu.BLOCKED)}"
+								process="@this" styleClass="orange-btn" icon="ui-icon-alert"
+								iconPos="left"
+								rendered="#{data.user.memberStatu.equals(MemberStatu.APPROVED)}"
+								update="@form" />
+							<p:spacer width="1" height="10" />
+							<p:commandButton value="ONAYLA"
+								action="#{customerListBean.save(data, MemberStatu.APPROVED)}"
+								process="@this" styleClass="green-btn" icon="ui-icon-check"
+								iconPos="left"
+								rendered="#{data.user.memberStatu!=MemberStatu.APPROVED}"
+								update="@form" />
+						</p:column>
+
+
+						<f:facet name="footer">
+							<p:commandButton value="YENİ GİRİŞ" process="@this"
+								action="#{customerListBean.redirectNew('customer.jsf')}"
+								onstart="start()" oncomplete="stop()" styleClass="green-btn"
+								style="width:auto;margin-bottom:10px;" />
+						</f:facet>
+
+
+					</p:dataTable>
+
+				</div>
+			</div>
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>

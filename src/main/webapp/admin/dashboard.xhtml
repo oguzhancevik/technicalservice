@@ -2,7 +2,8 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template/template.xhtml">
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template/template.xhtml">
 
 	<ui:define name="title">Admin</ui:define>
 
@@ -51,11 +52,11 @@
 			<div class="ui-g-12 ui-md-6 ui-lg-3">
 				<div class="ui-g card overview-box overview-box-1">
 					<div class="ui-g-4 overview-box-icon">
-						<i class="fa fa-inbox"></i>
+						<i class="fa fa-users"></i>
 					</div>
 					<div class="ui-g-8">
-						<span class="overview-box-count">100</span>
-						<span class="overview-box-name">Text1</span>
+						<span class="overview-box-count">#{dashboardAdminBean.customerCount}</span>
+						<span class="overview-box-name">Müşteri</span>
 					</div>
 					<div class="ui-g-12 overview-box-footer"></div>
 				</div>
@@ -66,8 +67,8 @@
 						<i class="fa fa-users"></i>
 					</div>
 					<div class="ui-g-8">
-						<span class="overview-box-count">100</span>
-						<span class="overview-box-name">Text2</span>
+						<span class="overview-box-count">100</span> <span
+							class="overview-box-name">Text2</span>
 					</div>
 					<div class="ui-g-12 overview-box-footer"></div>
 				</div>
@@ -78,8 +79,8 @@
 						<i class="fa fa-cloud"></i>
 					</div>
 					<div class="ui-g-8">
-						<span class="overview-box-count">100</span>
-						<span class="overview-box-name">Text3</span>
+						<span class="overview-box-count">100</span> <span
+							class="overview-box-name">Text3</span>
 					</div>
 					<div class="ui-g-12 overview-box-footer"></div>
 				</div>
@@ -90,8 +91,8 @@
 						<i class="fa fa-key"></i>
 					</div>
 					<div class="ui-g-8">
-						<span class="overview-box-count">100</span> <span
-							class="overview-box-name">Text3</span>
+						<span class="overview-box-count">#{dashboardAdminBean.adminCount}</span>
+						<span class="overview-box-name">Admin</span>
 					</div>
 					<div class="ui-g-12 overview-box-footer"></div>
 				</div>

@@ -1,4 +1,5 @@
 com.technicalservice.controller
+com.technicalservice.controller.base
 com.technicalservice.dao
 com.technicalservice.dao.base
 com.technicalservice.filter

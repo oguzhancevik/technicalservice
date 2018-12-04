@@ -158,4 +158,13 @@ public class UserDao extends BaseDao<User> {
 		return message;
 	}
 
+	/**
+	 * @return Sisteme kayıtlı olan Admin yetkisindeki aktif kullanıcıları listeler
+	 */
+	@SuppressWarnings("unchecked")
+	public List<User> listAdmin() {
+		return entityManager.createQuery("SELECT u FROM User u WHERE u.role='Admin' AND u.status=1 ORDER BY u.id")
+				.getResultList();
+	}
+
 }
