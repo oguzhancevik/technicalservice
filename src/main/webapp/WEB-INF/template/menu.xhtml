@@ -13,21 +13,35 @@
 			<pa:tabMenu rendered="#{loginAuthenticator.roleAdmin}">
 				<pa:tab icon="fa fa-cube" title="İşlemler">
 					<pa:menu widgetVar="me">
-						<p:menuitem id="om_dashboard" value="Anasafya"
+						<p:menuitem value="Anasafya"
 							icon="fa fa-fw fa-home" outcome="/admin/dashboard" />
 
-						<p:submenu id="um_customization2" label="Kullanıcı İşlemleri"
+						<p:submenu label="Kullanıcı İşlemleri"
 							icon="fa fa-fw fa-users">
 							<p:menuitem value="Müşteriler" icon="fa fa-fw fa-user"
 								outcome="/admin/customers" />
 							<p:menuitem value="Adminler" icon="fa fa-fw fa-check-circle"
 								outcome="/admin/admins" />
-								
-								
 						</p:submenu>
 					</pa:menu>
 				</pa:tab>
 			</pa:tabMenu>
+			
+			<pa:tabMenu rendered="#{loginAuthenticator.roleCustomer}">
+				<pa:tab icon="fa fa-cube" title="İşlemler">
+					<pa:menu widgetVar="me">
+					
+						<p:menuitem value="Anasafya"
+							icon="fa fa-fw fa-home" outcome="/customer/dashboard" />
+							
+						<p:menuitem value="Cihazlarım"
+							icon="fa fa-fw fa-hdd-o" outcome="/customer/devices" />
+
+						
+					</pa:menu>
+				</pa:tab>
+			</pa:tabMenu>
+			
 		</div>
 
 	</h:form>

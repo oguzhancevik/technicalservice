@@ -2,7 +2,6 @@ package com.technicalservice.model.rest;
 
 import java.io.Serializable;
 
-
 /**
  * @author oguzhan
  */
@@ -19,6 +18,8 @@ public class UserRest implements Serializable {
 	private String surname;
 
 	private String mobileNo;
+
+	private String memberStatu;
 
 	public String getEmail() {
 		return email;
@@ -58,6 +59,14 @@ public class UserRest implements Serializable {
 
 	public void setMobileNo(String mobileNo) {
 		this.mobileNo = mobileNo;
+	}
+
+	public String getMemberStatu() {
+		return memberStatu;
+	}
+
+	public void setMemberStatu(String memberStatu) {
+		this.memberStatu = memberStatu;
 	}
 
 	@Override

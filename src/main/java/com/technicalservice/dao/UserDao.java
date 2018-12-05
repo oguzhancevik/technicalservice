@@ -167,4 +167,12 @@ public class UserDao extends BaseDao<User> {
 				.getResultList();
 	}
 
+	/**
+	 * @return Kayıtlı Admin sayısını döndürür.
+	 */
+	public Long getAdminCount() {
+		return (Long) entityManager.createQuery("SELECT COUNT(u) FROM User u WHERE u.role='Admin' AND u.status=1")
+				.getSingleResult();
+	}
+
 }

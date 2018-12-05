@@ -2,6 +2,7 @@ package com.technicalservice.dao.base;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
+import java.math.BigInteger;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -133,6 +134,17 @@ public abstract class BaseDao<T extends ExtendedModel> implements Serializable {
 	private Class<T> getClassType() {
 		ParameterizedType parameterizedType = (ParameterizedType) getClass().getGenericSuperclass();
 		return (Class<T>) parameterizedType.getActualTypeArguments()[0];
+	}
+
+	/**
+	 * 
+	 * @param sequence tablodaki id değeri (her bir kayıt için id sırası)
+	 * @return Databasede kayıt edilecek bir sonraki id değerini döndürür..
+	 */
+	public String getNextVal(String sequence) {
+		BigInteger value = (BigInteger) entityManager.createNativeQuery("SELECT NEXTVAL('" + sequence + "')")
+				.getSingleResult();
+		return value.toString();
 	}
 
 }

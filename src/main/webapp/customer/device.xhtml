@@ -1,0 +1,94 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c8="http://java.sun.com/jsf/composite/composite"
+	template="/WEB-INF/template/template.xhtml">
+
+	<ui:define name="head">
+		<style type="text/css">
+.ui-fileupload-content .ui-progressbar {
+	width: 0px;
+	height: 0px;
+	margin: 0
+}
+</style>
+
+	</ui:define>
+
+	<ui:define name="title">Cihaz Kayıt</ui:define>
+
+	<ui:define name="content">
+		<h:form id="form">
+			<p:growl id="messages" showDetail="true" sticky="true" />
+			<div class="ui-g">
+				<div class="ui-g-8">
+					<div class="card card-w-title">
+						<h1>Cihaz Kayıt</h1>
+
+						<p:panelGrid columns="2" layout="grid"
+							styleClass="ui-panelgrid-blank form-group">
+
+							<p:inputText value="#{deviceDetailBean.device.brand}"
+								placeholder="Marka" />
+
+							<p:inputText value="#{deviceDetailBean.device.model}"
+								placeholder="Model" />
+
+							<p:inputText value="#{deviceDetailBean.device.deviceType}"
+								placeholder="Ürün Tipi" />
+
+							<p:inputText value="#{deviceDetailBean.device.color}"
+								placeholder="Renk" />
+
+							<p:calendar value="#{deviceDetailBean.device.productionDate}"
+								placeholder="Üretim Yılı" pattern="dd-MM-yyyy" mask="true" />
+
+							<p:spinner value="#{deviceDetailBean.device.guaranteePeriod}"
+								placeholder="Garanti Süresi" min="0" max="5" suffix=" Yıl" />
+
+							<p:spinner value="#{deviceDetailBean.device.height}"
+								placeholder="Yükseklik (cm)" min="1" max="10000" />
+
+							<p:spinner value="#{deviceDetailBean.device.width}"
+								placeholder="Genişlik (cm)" min="1" max="10000" />
+
+							<p:spinner value="#{deviceDetailBean.device.kg}"
+								placeholder="Ağırlık (kg)" min="1" max="100" />
+
+							<p:panel style="width:90%">
+								<p:fileUpload
+									fileUploadListener="#{deviceDetailBean.handleFileUpload}"
+									mode="advanced" dragDropSupport="false" update=":form:messages"
+									sizeLimit="100000" fileLimit="1" cancelLabel="İptal"
+									invalidFileMessage="Geçersiz dosya tipi"
+									invalidSizeMessage="Boyut falza" previewWidth="50"
+									label="Resim Seç" fileLimitMessage="Dosya bouyu fazla"
+									uploadLabel="Yükle" allowTypes="/(\.|\/)(png|jpg|jpeg)$/" />
+
+							</p:panel>
+
+						</p:panelGrid>
+					</div>
+				</div>
+
+				<div class="ui-g-8">
+					<div class="card card-w-title">
+						<p:panelGrid columns="2"
+							styleClass="ui-panelgrid-blank form-group">
+							<p:commandButton value="VAZGEÇ"
+								action="devices.jsf?faces-redirect=true" process="@this"
+								styleClass="pink-btn" />
+							<p:commandButton value="KAYDET"
+								action="#{deviceDetailBean.save('devices.jsf')}" process=":form"
+								onclick="start()" oncomplete="stop()" styleClass="green-btn" />
+						</p:panelGrid>
+					</div>
+				</div>
+			</div>
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>

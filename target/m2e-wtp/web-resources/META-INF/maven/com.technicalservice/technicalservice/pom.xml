@@ -127,19 +127,24 @@
 			<version>2.0</version>
 		</dependency>
 
-
-
-
-
-
-
-		<!-- Test Db -->
+		<!-- @JsonIgnore -->
 		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<version>1.4.192</version>
-			<scope>test</scope>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>2.9.7</version>
 		</dependency>
+
+
+
+		<!-- File Upload -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.6</version>
+		</dependency>
+
+
+
 
 		<!-- Test Engine Dependencies -->
 		<dependency>

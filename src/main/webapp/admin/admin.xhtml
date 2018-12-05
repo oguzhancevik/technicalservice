@@ -9,11 +9,12 @@
 	<ui:define name="head">
 	</ui:define>
 
-	<ui:define name="title">Admin Info</ui:define>
+	<ui:define name="title">Admin Kayıt</ui:define>
 
 	<ui:define name="content">
 		<h:form id="form" enctype="multipart/form-data">
-			<p:growl id="messages" showDetail="true" sticky="true" />
+			<p:messages autoUpdate="true" closable="true" showDetail="true"
+				showIcon="true" />
 			<div class="ui-g">
 				<div class="ui-g-6 card card-w-title">
 					<h1>Admin Kayıt</h1>
@@ -46,12 +47,12 @@
 						<p:panelGrid columns="2"
 							styleClass="ui-panelgrid-blank form-group">
 							<p:commandButton value="VAZGEÇ"
-								action="/admin/admins.jsf?faces-redirect=true"
-								process="@this" styleClass="pink-btn" />
+								action="/admin/admins.jsf?faces-redirect=true" process="@this"
+								styleClass="pink-btn" />
 							<p:commandButton value="KAYDET"
-								action="#{adminDetailBean.save('admin.jsf')}"
-								update="@form" process="@form" onclick="start()"
-								oncomplete="stop()" styleClass="green-btn" />
+								action="#{adminDetailBean.save('admin.jsf')}" update=":form"
+								process=":form" onclick="start()" oncomplete="stop()"
+								styleClass="green-btn" />
 						</p:panelGrid>
 
 					</div>

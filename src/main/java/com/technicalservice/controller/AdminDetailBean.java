@@ -46,8 +46,15 @@ public class AdminDetailBean {
 	 */
 	public void save(String page) {
 		try {
-			user.setRole("Admin");
-			userDao.save(user);
+
+			if (user.getId() == null && userDao.findByEmail(user.getEmail()) != null) {
+				UtilLog.logToScreen(FacesMessage.SEVERITY_ERROR, "HATA", "Email zaten kayıtlı!");
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "HATA", "Email zaten kayıtlı!"));
+			} else {
+				user.setRole("Admin");
+				userDao.save(user);
+			}
+
 			FacesContext.getCurrentInstance().getExternalContext().redirect(page);
 		} catch (Exception e) {
 			UtilLog.logToScreen(FacesMessage.SEVERITY_ERROR, "HATA", "Admin Kaydedilemedi!");

@@ -1,11 +1,14 @@
 package com.technicalservice.model.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -45,6 +48,9 @@ public class Customer extends ExtendedModel {
 
 	@Temporal(TemporalType.DATE)
 	private Date birthDate;
+	
+	@OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
+	private List<Device> devices;
 
 	public Customer() {
 	}
@@ -129,6 +135,14 @@ public class Customer extends ExtendedModel {
 
 	public void setBirthDate(Date birthDate) {
 		this.birthDate = birthDate;
+	}
+
+	public List<Device> getDevices() {
+		return devices;
+	}
+
+	public void setDevices(List<Device> devices) {
+		this.devices = devices;
 	}
 
 	@Override

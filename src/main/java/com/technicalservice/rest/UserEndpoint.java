@@ -42,7 +42,7 @@ public class UserEndpoint {
 	private PasswordResetRequestDao passwordResetRequestDao;
 
 	/**
-	 * Url: http://localhost:8080/technicalservice/rest/user/register
+	 * Url: http://localhost:8080/technicalservice/rest/user/register/customer
 	 * 
 	 * @param userRest
 	 *            Kaydedilecek User
@@ -51,26 +51,33 @@ public class UserEndpoint {
 	 * @throws Exception
 	 */
 	@POST
-	@Path("/register")
+	@Path("/register/customer")
 	@Consumes(MediaType.APPLICATION_JSON + "; charset=UTF-8")
 	@Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
-	public Response register(UserRest userRest) throws Exception {
+	public Response registerCustomer(UserRest userRest) throws Exception {
 
 		Result result = new Result();
 		try {
-			User user = new User();
-			user.setEmail(userRest.getEmail());
-			user.setPassword(userRest.getPassword());
-			user.setRole("Customer");
-			user.setMemberStatu(MemberStatu.WAITING);
 
-			Customer customer = new Customer(user);
-			customer.setName(userRest.getName());
-			customer.setSurname(userRest.getSurname());
-			customer.setMobileNo(userRest.getMobileNo());
-			customerDao.save(customer);
-			result.setResult(true);
-			result.setMessage("Kullanıcı kayıt oldu!");
+			if (userDao.findByEmail(userRest.getEmail()) != null) {
+				result.setResult(false);
+				result.setMessage("Email zaten kayıtlı!");
+			} else {
+				User user = new User();
+				user.setEmail(userRest.getEmail());
+				user.setPassword(userRest.getPassword());
+				user.setRole("Customer");
+				user.setMemberStatu(MemberStatu.WAITING);
+
+				Customer customer = new Customer(user);
+				customer.setName(userRest.getName());
+				customer.setSurname(userRest.getSurname());
+				customer.setMobileNo(userRest.getMobileNo());
+				customerDao.save(customer);
+				result.setResult(true);
+				result.setMessage("Kullanıcı kayıt oldu!");
+			}
+
 		} catch (Exception e) {
 			UtilLog.log(e);
 			result.setResult(false);
@@ -80,9 +87,54 @@ public class UserEndpoint {
 	}
 
 	/**
-	 * Url: http://localhost:8080/technicalservice/rest/user/login/test@gmail.com/1234
-	 * @param email Giriş yapılacak kullanıcı adı
-	 * @param password Giriş yapan kullanıcı şifresi
+	 * Url: http://localhost:8080/technicalservice/rest/user/register/admin
+	 * 
+	 * @param userRest
+	 *            Kaydedilecek Admin
+	 * @return Kaydedilip kaydedilmediği bilgisi
+	 *         {@link com.technicalservice.model.pojo.Result} döner.
+	 * @throws Exception
+	 */
+	@POST
+	@Path("/register/admin")
+	@Consumes(MediaType.APPLICATION_JSON + "; charset=UTF-8")
+	@Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
+	public Response registerAdmin(UserRest userRest) throws Exception {
+
+		Result result = new Result();
+		try {
+
+			if (userDao.findByEmail(userRest.getEmail()) != null) {
+				result.setResult(false);
+				result.setMessage("Email zaten kayıtlı!");
+			} else {
+				User user = new User();
+				user.setEmail(userRest.getEmail());
+				user.setPassword(userRest.getPassword());
+				user.setRole("Admin");
+				user.setMemberStatu(MemberStatu.WAITING);
+
+				userDao.save(user);
+				result.setResult(true);
+				result.setMessage("Admin kayıt oldu!");
+			}
+
+		} catch (Exception e) {
+			UtilLog.log(e);
+			result.setResult(false);
+			result.setMessage("Admin kayıt edilemedi!");
+		}
+		return Response.ok(result).build();
+	}
+
+	/**
+	 * Url:
+	 * http://localhost:8080/technicalservice/rest/user/login/test@gmail.com/1234
+	 * 
+	 * @param email
+	 *            Giriş yapılacak kullanıcı adı
+	 * @param password
+	 *            Giriş yapan kullanıcı şifresi
 	 * @return Sisteme login olup olmadığı bilgisini
 	 *         {@link com.technicalservice.model.pojo.Result} döndürür.
 	 */
@@ -105,9 +157,12 @@ public class UserEndpoint {
 	}
 
 	/**
-	 * Url: http://localhost:8080/technicalservice/rest/user/sendMailForResetPassword
+	 * Url:
+	 * http://localhost:8080/technicalservice/rest/user/sendMailForResetPassword
 	 * Şifre hatırlatma maili gönderir.
-	 * @param userRest Sisteme giriş yapan kullanıcı
+	 * 
+	 * @param userRest
+	 *            Sisteme giriş yapan kullanıcı
 	 * @return şifre hatırlatma maili gidip gitmediğini döndürür.
 	 */
 	@POST
@@ -173,7 +228,9 @@ public class UserEndpoint {
 
 	/**
 	 * Url: http://localhost:8080/technicalservice/rest/user/changePassword
-	 * @param userRest Şifre değişikliği yapmak isteyen kullanıcı
+	 * 
+	 * @param userRest
+	 *            Şifre değişikliği yapmak isteyen kullanıcı
 	 * @return Şifrenin değiştirilip değiştirilmediği bilgisini döndürür.
 	 */
 	@PUT
@@ -200,8 +257,10 @@ public class UserEndpoint {
 
 	/**
 	 * Url: http://localhost:8080/technicalservice/rest/user/removeUser
-	 * @param userRest Sistemden silinecek olan kullanıcı
-	 * @return Silinip silinmediği bilgisini geri döner 
+	 * 
+	 * @param userRest
+	 *            Sistemden silinecek olan kullanıcı
+	 * @return Silinip silinmediği bilgisini geri döner
 	 */
 	@DELETE
 	@Path("/removeUser")
@@ -214,12 +273,41 @@ public class UserEndpoint {
 			Customer customer = customerDao.findByUser(user);
 			customerDao.remove(customer);
 			result.setResult(true);
-			result.setMessage("Kullanıcı Silindi!");
+			result.setMessage("Kullanıcı silindi!");
 		} catch (Exception e) {
 			e.printStackTrace();
 			result.setResult(true);
-			result.setMessage("Kullanıcı Silindi!");
+			result.setMessage("Kullanıcı silindi!");
 		}
+		return Response.ok(result).build();
+	}
+
+	/**
+	 * Url: http://localhost:8080/technicalservice/rest/user/changeMemberStatu
+	 * 
+	 * @param userRest
+	 *            üyelik statusu değiştirilecek olan kullanıcı
+	 * @return Üyelik statusunun değiştirilip değiştirilmediği bilgisini döndürür.
+	 */
+	@PUT
+	@Path("/changeMemberStatu")
+	@Consumes(MediaType.APPLICATION_JSON + "; charset=UTF-8")
+	@Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
+	public Response changeMemberStatu(UserRest userRest) {
+		Result result = new Result();
+
+		try {
+			User user = userDao.findByEmail(userRest.getEmail());
+			user.setMemberStatu(MemberStatu.valueOf(userRest.getMemberStatu()));
+			userDao.save(user);
+			result.setResult(true);
+			result.setMessage("Üyelik statusu değiştirildi");
+		} catch (Exception e) {
+			e.printStackTrace();
+			result.setResult(false);
+			result.setMessage("Üyelik statusu değiştirilemedi!");
+		}
+
 		return Response.ok(result).build();
 	}
 

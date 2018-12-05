@@ -36,7 +36,7 @@
 
 	</ui:define>
 
-	<ui:define name="title">Tüm Müşteriler</ui:define>
+	<ui:define name="title">Cihazlarım</ui:define>
 
 	<ui:define name="content">
 		<h:form id="form">
@@ -45,12 +45,10 @@
 			<p:growl id="growl" showDetail="true" sticky="true" />
 			<div class="ui-g dashboard">
 				<div class="ui-g-12 ui-md-6 ui-lg-12 card">
-					<h1>Tüm Müşteriler</h1>
+					<h1>Cihazlarım</h1>
 
-					<p:dataTable value="#{customerListBean.listModel}" var="data"
+					<p:dataTable value="#{deviceListBean.listModel}" var="data"
 						reflow="true" rowIndexVar="rowInd" paginator="true" rows="10">
-
-
 
 						<p:column headerText="Sıra" sortBy="#{rowInd+1}" width="5%">
 							<h:outputText value="#{rowInd+1}" />
@@ -58,61 +56,67 @@
 
 						<p:column headerText="İşlem" exportable="true" width="12%">
 							<p:commandLink value="GÜNCELLE"
-								action="#{customerListBean.updatePage(data, 'customer.jsf')}"
+								action="#{deviceListBean.updatePage(data, 'device.jsf')}"
 								process="@this" style="color:blue" />
 							<p:spacer width="10" height="10" />
 							<p:commandLink value="SİL"
-								action="#{customerListBean.remove(data)}" update=":form"
+								action="#{deviceListBean.remove(data)}" update=":form"
 								style="color:red" immediate="true">
 								<p:confirm header="ONAY" message="Bu kayıt silinsin mi?"
 									icon="ui-icon-alert" />
 							</p:commandLink>
 						</p:column>
 
-						<p:column headerText="İsim" sortBy="#{data.name}">
-							<h:outputText value="#{data.name}" />
+						<p:column headerText="Marka" sortBy="#{data.brand}">
+							<h:outputText value="#{data.brand}" />
 						</p:column>
 
-						<p:column headerText="Soyisim" sortBy="#{data.surname}" width="10%">
-							<h:outputText value="#{data.surname}" />
+						<p:column headerText="Model" sortBy="#{data.model}">
+							<h:outputText value="#{data.model}" />
 						</p:column>
 
-						<p:column headerText="Email" sortBy="#{data.user.email}">
-							<h:outputText value="#{data.user.email}" />
+						<p:column headerText="Tipi" sortBy="#{data.deviceType}">
+							<h:outputText value="#{data.deviceType}" />
 						</p:column>
 
-						<p:column headerText="Telefon" width="10%">
-							<h:outputText value="#{data.mobileNo}" />
+						<p:column headerText="Üretim Tarihi"
+							sortBy="#{data.productionDate}">
+							<h:outputText value="#{data.productionDate}" />
 						</p:column>
 
-						<p:column headerText="Role" sortBy="#{data.user.role}" width="8%">
-							<h:outputText value="#{data.user.role}" />
+						<p:column headerText="Garanti Süresi"
+							sortBy="#{data.guaranteePeriod}">
+							<h:outputText value="#{data.guaranteePeriod}" />
 						</p:column>
 
-						<p:column headerText="Statu" sortBy="#{data.user.memberStatu.displayName}" width="10%">
-							<h:outputText value="#{data.user.memberStatu.displayName}" />
+						<p:column headerText="Renk" sortBy="#{data.color}">
+							<h:outputText value="#{data.color}" />
 						</p:column>
 
-						<p:column headerText="Onay/Ret"  width="10%">
-							<p:commandButton value="BLOKE"
-								action="#{customerListBean.save(data, MemberStatu.BLOCKED)}"
-								process="@this" styleClass="orange-btn" icon="ui-icon-alert"
-								iconPos="left"
-								rendered="#{data.user.memberStatu.equals(MemberStatu.APPROVED)}"
-								update="@form" />
-							<p:spacer width="1" height="10" />
-							<p:commandButton value="ONAYLA"
-								action="#{customerListBean.save(data, MemberStatu.APPROVED)}"
-								process="@this" styleClass="green-btn" icon="ui-icon-check"
-								iconPos="left"
-								rendered="#{data.user.memberStatu!=MemberStatu.APPROVED}"
-								update="@form" />
+						<p:column headerText="Yükseklik (cm)" sortBy="#{data.height}">
+							<h:outputText value="#{data.height}" />
 						</p:column>
+
+
+						<p:column headerText="Genişlik (cm)" sortBy="#{data.width}">
+							<h:outputText value="#{data.width}" />
+						</p:column>
+
+						<p:column headerText="Ağırlık (kg)" sortBy="#{data.kg}">
+							<h:outputText value="#{data.kg}" />
+						</p:column>
+
+						<p:column headerText="Resim">
+							<p:graphicImage value="/image?name=#{data.image}" height="70"
+								width="70" />
+						</p:column>
+
+
 
 
 						<f:facet name="footer">
 							<p:commandButton value="YENİ GİRİŞ" process="@this"
-								action="#{customerListBean.redirectNew('customer.jsf')}"
+								action="#{deviceListBean.redirectNew('device.jsf')}"
 								onstart="start()" oncomplete="stop()" styleClass="green-btn"
 								style="width:auto;margin-bottom:10px;" />
 						</f:facet>

@@ -9,6 +9,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
 
 import com.technicalservice.dao.CustomerDao;
+import com.technicalservice.dao.UserDao;
 import com.technicalservice.model.entity.Customer;
 import com.technicalservice.model.entity.User;
 import com.technicalservice.util.UtilLog;
@@ -22,6 +23,9 @@ import com.technicalservice.util.UtilLog;
 @ManagedBean(name = "customerDetailBean")
 @ViewScoped
 public class CustomerDetailBean {
+
+	@EJB
+	private UserDao userDao;
 
 	@EJB
 	private CustomerDao customerDao;
@@ -42,12 +46,17 @@ public class CustomerDetailBean {
 	}
 
 	/**
-	 * @param page Yönlendirilecek sayfa adresi
+	 * @param page
+	 *            Yönlendirilecek sayfa adresi
 	 */
 	public void save(String page) {
 		try {
-			customer.getUser().setRole("Customer");
-			customerDao.save(customer);
+			if (customer.getId() == null && userDao.findByEmail(customer.getUser().getEmail()) != null) {
+				UtilLog.logToScreen(FacesMessage.SEVERITY_ERROR, "HATA", "Email zaten kayıtlı!");
+			} else {
+				customer.getUser().setRole("Customer");
+				customerDao.save(customer);
+			}
 			FacesContext.getCurrentInstance().getExternalContext().redirect(page);
 		} catch (Exception e) {
 			UtilLog.logToScreen(FacesMessage.SEVERITY_ERROR, "HATA", "Müşteri Kaydedilemedi!");

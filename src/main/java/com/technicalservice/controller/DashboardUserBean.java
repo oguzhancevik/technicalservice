@@ -5,46 +5,43 @@ import java.io.IOException;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
 
 import com.technicalservice.dao.CustomerDao;
 import com.technicalservice.dao.DeviceDao;
-import com.technicalservice.dao.UserDao;
+import com.technicalservice.model.entity.Customer;
 import com.technicalservice.model.entity.User;
 import com.technicalservice.util.UtilLog;
 
 /**
- * Admin kullanıcısının anasayfasında sistemde kayıtlı kaç kullanıcı, ürün vs
- * gibi bilgilerin verildiği sınıftır.
+ * Customer kullanıcısının anasayfasında sistemde kayıtlı cihaz vs gibi
+ * bilgilerin verildiği sınıftır.
  * 
  * @author oguzhan
  */
-@ManagedBean(name = "dashboardAdminBean")
+@ManagedBean(name = "dashboardUserBean")
 @ViewScoped
-public class DashboardAdminBean {
+public class DashboardUserBean {
 
-	@EJB
-	private CustomerDao customerDao;
-
-	@EJB
-	private UserDao userDao;
+	@ManagedProperty(value = "#{sessionObject}")
+	private SessionObject sessionObject;
 
 	@EJB
 	private DeviceDao deviceDao;
 
-	private Long customerCount;
-
-	private Long adminCount;
+	@EJB
+	private CustomerDao customerDao;
 
 	private Long deviceCount;
 
 	@PostConstruct
 	public void init() {
-		customerCount = customerDao.getCustomerCount();
-		adminCount = userDao.getAdminCount();
-		deviceCount = deviceDao.getDeviceCount(null);
+		Customer customer = customerDao.findByUser(sessionObject.getUser());
+
+		deviceCount = deviceDao.getDeviceCount(customer);
 	}
 
 	public void redirectNew(String page) {
@@ -57,8 +54,9 @@ public class DashboardAdminBean {
 
 	public void updatePage(User updateModel, String page) {
 		try {
+			Customer customer = customerDao.findByUser(updateModel);
 			Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
-			flash.put("model", updateModel);
+			flash.put("model", customer);
 
 			FacesContext.getCurrentInstance().getExternalContext().redirect(page);
 		} catch (Exception e) {
@@ -66,20 +64,12 @@ public class DashboardAdminBean {
 		}
 	}
 
-	public Long getCustomerCount() {
-		return customerCount;
+	public SessionObject getSessionObject() {
+		return sessionObject;
 	}
 
-	public void setCustomerCount(Long customerCount) {
-		this.customerCount = customerCount;
-	}
-
-	public Long getAdminCount() {
-		return adminCount;
-	}
-
-	public void setAdminCount(Long adminCount) {
-		this.adminCount = adminCount;
+	public void setSessionObject(SessionObject sessionObject) {
+		this.sessionObject = sessionObject;
 	}
 
 	public Long getDeviceCount() {

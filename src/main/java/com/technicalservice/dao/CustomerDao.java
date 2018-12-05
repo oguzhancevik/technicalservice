@@ -27,8 +27,15 @@ public class CustomerDao extends BaseDao<Customer> {
 	 * @return Sisteme giriş yapan kullanıcıya göre hangi müşteri olduğunu döndürür
 	 */
 	public Customer findByUser(User user) {
-		return (Customer) entityManager.createQuery("SELECT c from Customer c WHERE c.user= :user")
+		return (Customer) entityManager.createQuery("SELECT c FROM Customer c WHERE c.user= :user")
 				.setParameter("user", user).getSingleResult();
+	}
+
+	/**
+	 * @return Kayıtlı Müşteri sayısını döndürür.
+	 */
+	public Long getCustomerCount() {
+		return (Long) entityManager.createQuery("SELECT COUNT(c) FROM Customer c WHERE c.status=1").getSingleResult();
 	}
 
 }

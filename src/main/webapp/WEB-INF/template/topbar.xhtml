@@ -13,32 +13,41 @@
 		</div>
 
 		<ul class="topbar-menu fadeInDown animated">
+		
 			<li class="profile-item">
-			
 				<p:commandLink action="#{loginAuthenticator.invalidateSession()}">
 					<i class="fa fa-fw fa-close"></i>
 					<span>Çıkış</span>
 				</p:commandLink>
-			
 			</li>
-
 
 			<li class="profile-item">
 				
 				<!-- Admin Profil Buton -->
-				<p:commandLink action="#{adminListBean.updatePage(sessionObject.user,'admin.jsf')}"
+				<p:commandLink action="#{dashboardAdminBean.updatePage(sessionObject.user,'admin.jsf')}"
 					rendered="#{loginAuthenticator.roleAdmin}">
 					<i class="fa fa-fw fa-user"></i>
 					<span>Profil</span>
 				</p:commandLink>
 				
 				<!-- Customer Profil Buton -->
-				<p:commandLink rendered="#{loginAuthenticator.roleCustomer}">
+				<p:commandLink action="#{dashboardUserBean.updatePage(sessionObject.user,'profile.jsf')}" 
+					rendered="#{loginAuthenticator.roleCustomer}">
 					<i class="fa fa-fw fa-user"></i>
 					<span>Profil</span>
 				</p:commandLink>
 			
 			</li>
+			
+			
+		
+			<li class="profile-item">
+				<p:commandLink action="#{dashboardAdminBean.redirectNew('dashboard.jsf')}">
+					<i class="fa fa-fw fa-home"></i>
+					<span>Anasayfa</span>
+				</p:commandLink>
+			</li>
+			
 		</ul>
 	</div>
 </ui:composition>
