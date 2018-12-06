@@ -1,4 +1,4 @@
-### Kullanılan Teknolojiler
+### Kullanılan Teknolojiler :rocket:
 * JSF 
 * PrimeFaces 
 * WildFly 10
@@ -29,7 +29,7 @@ Sistem Kabiliyetleri
 9- Bakım tarihi gelen cihaz için kullanıcıya otomatik mail atılır. Veya bir cihaz üzerinde herhangi bir parça değişikliği olmuş ise bu bilgide kullanıcıya mail olarak gider.
 
 
-### Kurulum
+### Kurulum :closed_lock_with_key:
 
 * ` WEB-INF/lib/ ` dizini altındaki jar dosyaları maven olarak bulunmadığı için projeye dahil etmelisiniz.
 
