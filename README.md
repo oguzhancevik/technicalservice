@@ -1,6 +1,4 @@
-**technicalservice**
-
-###### Kullanılan Teknolojiler
+### Kullanılan Teknolojiler
 * JSF 
 * PrimeFaces 
 * WildFly 10
@@ -8,6 +6,6 @@
 * PostgreSQL 
 
 
-#### Kurulum
+### Kurulum
 Uygulamada Security kullandığımız için WildFly dizini altında 
 >standalone/configuration/standalone.xml içinde aşağıdaki bilgileri eklemelisiniz.
