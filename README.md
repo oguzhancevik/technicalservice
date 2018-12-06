@@ -1,4 +1,13 @@
 **technicalservice**
 
 ###### Kullanılan Teknolojiler
-Backend tarafta J2EE framework JSF, önyüzde ise PrimeFaces kullanıldı. Uygulama sunucusu olarak WildFly 10 kullanıldı. ORM olarak Hibernate veritabanı ise PostgreSQL kullanıldı.
+* JSF (J2EE Web framework)
+* PrimeFaces (Ön yüzdeki component ve tema için)
+* WildFly 10 (Uygulama Sunucusu)
+* Hibernate (ORM)
+* PostgreSQL (Database)
+
+
+#### Kurulum
+Uygulamada Security kullandığımız için WildFly dizini altında 
+>standalone/configuration/standalone.xml içinde aşağıdaki bilgileri eklemelisiniz.
