@@ -50,7 +50,7 @@
 </security-domain> 
 ```                
 
-* Email gönderimi için `  com/technicalservice/resource/mail.properties `  dosyası içersinde smtp ve kullanıcı bilgilerini ayarlamalısınız.
+* Email gönderimi için `  com/technicalservice/resource/mail.properties `  dosyası içersinde smtp ve kullanıcı bilgilerini ayarlamalısınız. Email hesabınızdan izin vermeniz gerekebilir (Ör: Gmail güvenilirliği az olan uygulamalar bölümü açık olmalı)
 
 * Sisteme cihaz resmi yüklediğimiz için manuel olarak ` image_seq` adında sequence ekleyiniz.
 
