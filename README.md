@@ -52,11 +52,9 @@
     <share-prepared-statements>false</share-prepared-statements>
   </statement>    
 </datasource> 
-
 ```
 
 ` <security-domains> </security-domains> ` etiketleri arasına aşağıdaki kodu kopyalayınız.
-
                 
  ``` 
  <security-domain name="TechnicalServiceSD" cache-type="default">
