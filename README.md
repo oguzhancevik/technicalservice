@@ -8,8 +8,6 @@
 
 ### Sistem Özellikleri :zap:
 
-Sistem Kabiliyetleri
-
 1- Sistemde security bulunmaktadır. Register, Login, Şifremi unuttum gibi özellikler bulunmaktadır.
 
 2- Şifremi unuttum özelliği kullanılırsa kullanıcının mailine şifre sıfırlama linki gönderilecektir ve yeni bir şifre belirlenecektir.
