@@ -1,11 +1,11 @@
 **technicalservice**
 
 ###### Kullanılan Teknolojiler
-* JSF (J2EE Web framework)
-* PrimeFaces (Ön yüzdeki component ve tema için)
-* WildFly 10 (Uygulama Sunucusu)
-* Hibernate (ORM)
-* PostgreSQL (Database)
+* JSF 
+* PrimeFaces 
+* WildFly 10
+* Hibernate 
+* PostgreSQL 
 
 
 #### Kurulum
