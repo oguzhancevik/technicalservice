@@ -7,6 +7,4 @@
 
 
 ### Kurulum
-Uygulamada Security kullandığımız için WildFly dizini altında 
->>standalone/configuration/standalone.xml 
-içinde aşağıdaki bilgileri eklemelisiniz.
+Uygulamada Security kullandığımız için WildFly dizini altında ``` standalone/configuration/standalone.xml ``` içine aşağıdaki bilgileri eklemelisiniz.
