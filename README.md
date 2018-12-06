@@ -6,7 +6,6 @@
 * PostgreSQL 
 * Maven
 
-
 ### Kurulum
 
 * ` WEB-INF/lib/ ` dizini altındaki jar dosyaları maven olarak bulunmadığı için projeye dahil etmelisiniz.
@@ -92,4 +91,5 @@
 <br/>
 ![Bakım / Onarım CRUD](https://raw.githubusercontent.com/oguzhancevik/technicalservice/master/analiz/ekran/06-adminIssue.gif)
 
-
+<img src="https://image.flaticon.com/icons/svg/210/210311.svg" width="48">
+[GitHub Pages](https://github.com/oguzhancevik/technicalservice/tree/master/javadoc)
