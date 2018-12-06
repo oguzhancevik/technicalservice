@@ -55,3 +55,41 @@
 * Sisteme cihaz resmi yüklediğimiz için manuel olarak ` image_seq` adında sequence ekleyiniz.
 
 * Yüklenen resimlerin yolunu `  com/technicalservice/resource/Prefix.java ` sınıfından ayarlayabilirsiniz. Daha sonra belirttiğiniz klasörün içine image adında bir klasör daha eklemelisiniz. Ayrıca belirttiğiniz adresin yazma ve okuma yetkisi olmalıdır.
+
+### Kullanım
+
+1- Admin Dashboard 
+<br/>
+![Admin Dashboard](https://raw.githubusercontent.com/oguzhancevik/technicalservice/master/analiz/ekran/00-adminDashbard.gif)
+
+
+2- Şifremi Unuttum
+<br/>
+![Şifremi Unuttum](https://raw.githubusercontent.com/oguzhancevik/technicalservice/master/analiz/ekran/01-forgotPassword.gif)
+
+
+3- Müşteri Kayıt
+<br/>
+![Müşteri Kayıt](https://raw.githubusercontent.com/oguzhancevik/technicalservice/master/analiz/ekran/02-customerRegister.gif)
+
+
+4- Müşteri Login
+<br/>
+![Müşteri Login](https://raw.githubusercontent.com/oguzhancevik/technicalservice/master/analiz/ekran/03-customerLogin.gif)
+
+
+5- Cihaz CRUD
+<br/>
+![Cihaz CRUD](https://raw.githubusercontent.com/oguzhancevik/technicalservice/master/analiz/ekran/04-deviceCrud.gif)
+
+
+6- Bakım / Onarım CRUD
+<br/>
+![Bakım / Onarım CRUD](https://raw.githubusercontent.com/oguzhancevik/technicalservice/master/analiz/ekran/05-issueCrud.gif)
+
+
+7- Admin Bakım / Onarım
+<br/>
+![Bakım / Onarım CRUD](https://raw.githubusercontent.com/oguzhancevik/technicalservice/master/analiz/ekran/06-adminIssue.gif)
+
+
