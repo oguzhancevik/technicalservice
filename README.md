@@ -6,6 +6,29 @@
 * PostgreSQL 
 * Maven
 
+### Sistem Özellikleri
+
+Sistem Kabiliyetleri
+
+1- Sistemde security bulunmaktadır. Register, Login, Şifremi unuttum gibi özellikler bulunmaktadır.
+
+2- Şifremi unuttum özelliği kullanılırsa kullanıcının mailine şifre sıfırlama linki gönderilecektir ve yeni bir şifre belirlenecektir.
+
+3- Sistemde Admin ve Customer adında iki rol bulunmaktadır.
+
+4- Sisteme kayıt olan kullanıcılar admin onayından geçtikten sonra sisteme girebilirler.
+
+5- Bloke olan müşteriler ise siteye erişimezler.
+
+6- Admin kullanıcısı Customer kullanıcısının açtığı bakım onarım işleri ile ilgilenmektedir.
+
+7- Bir müşteri cihazında arıza kaydı veya bakım kaydı yaptırmak istiyor ise ilk önce sisteme üye olmalıdır. Daha sonra cihaz kaydı yapmalı ve hangi cihaz üzerinde işlem yapacaksa ona göre bir issue açmalıdır.
+
+8- Bir ürün üzerinde birden fazla admin işlem yapamaz.
+
+9- Bakım tarihi gelen cihaz için kullanıcıya otomatik mail atılır. Veya bir cihaz üzerinde herhangi bir parça değişikliği olmuş ise bu bilgide kullanıcıya mail olarak gider.
+
+
 ### Kurulum
 
 * ` WEB-INF/lib/ ` dizini altındaki jar dosyaları maven olarak bulunmadığı için projeye dahil etmelisiniz.
