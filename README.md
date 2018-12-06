@@ -8,9 +8,9 @@
 
 ### Kurulum
 
-* Uygulamada Security kullanıldığı için WildFly dizini altında ``` standalone/configuration/standalone.xml ``` içine aşağıdaki bilgileri eklemelisiniz.
+* Uygulamada Security kullanıldığı için WildFly dizini altında ` standalone/configuration/standalone.xml ` içine aşağıdaki bilgileri eklemelisiniz.
 
-``` <datasources> </datasources> ``` etiketleri arasına aşağıdaki kodu kopyalayınız.
+` <datasources> </datasources> ` etiketleri arasına aşağıdaki kodu kopyalayınız.
 ```
 <datasource jta="true" jndi-name="java:/TechnicalService" pool-name="TechnicalService" enabled="true" use-ccm="false">
   <connection-url>jdbc:postgresql://localhost:5432/TechnicalService</connection-url>
@@ -32,7 +32,7 @@
 
 ```
 
-``` <security-domains> </security-domains> ``` etiketleri arasına aşağıdaki kodu kopyalayınız.
+` <security-domains> </security-domains> ` etiketleri arasına aşağıdaki kodu kopyalayınız.
 
                 
  ``` 
@@ -47,4 +47,8 @@
 </security-domain> 
 ```                
 
-* Email gönderimi için ```  com/technicalservice/resource/mail.properties ```  dosyası içersinde smtp ve kullanıcı ayarlarını yapmalısınız.
+* Email gönderimi için `  com/technicalservice/resource/mail.properties `  dosyası içersinde smtp ve kullanıcı bilgilerini ayarlamalısınız.
+
+* Sisteme cihaz resmi yüklediğimiz için manuel olarak ` image_seq` adında sequence ekleyiniz.
+
+* Yüklenen resimlerin yolunu `  com/technicalservice/resource/Prefix.java ` sınıfından ayarlayabilirsiniz. Daha sonra belirttiğiniz klasörün içine image adında bir klasör daha eklemelisiniz. Ayrıca belirttiğiniz adresin yazma ve okuma yetkisi olmalıdır.
