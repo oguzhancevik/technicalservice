@@ -11,6 +11,7 @@ import javax.faces.context.Flash;
 
 import com.technicalservice.dao.CustomerDao;
 import com.technicalservice.dao.DeviceDao;
+import com.technicalservice.dao.IssueDao;
 import com.technicalservice.dao.UserDao;
 import com.technicalservice.model.entity.User;
 import com.technicalservice.util.UtilLog;
@@ -34,17 +35,23 @@ public class DashboardAdminBean {
 	@EJB
 	private DeviceDao deviceDao;
 
+	@EJB
+	private IssueDao issueDao;
+
 	private Long customerCount;
 
 	private Long adminCount;
 
 	private Long deviceCount;
 
+	private Long issueCount;
+
 	@PostConstruct
 	public void init() {
 		customerCount = customerDao.getCustomerCount();
 		adminCount = userDao.getAdminCount();
 		deviceCount = deviceDao.getDeviceCount(null);
+		issueCount = issueDao.getIssueCount(null, null);
 	}
 
 	public void redirectNew(String page) {
@@ -88,6 +95,14 @@ public class DashboardAdminBean {
 
 	public void setDeviceCount(Long deviceCount) {
 		this.deviceCount = deviceCount;
+	}
+
+	public Long getIssueCount() {
+		return issueCount;
+	}
+
+	public void setIssueCount(Long issueCount) {
+		this.issueCount = issueCount;
 	}
 
 }

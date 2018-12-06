@@ -12,8 +12,10 @@ import javax.faces.context.Flash;
 
 import com.technicalservice.dao.CustomerDao;
 import com.technicalservice.dao.DeviceDao;
+import com.technicalservice.dao.IssueDao;
 import com.technicalservice.model.entity.Customer;
 import com.technicalservice.model.entity.User;
+import com.technicalservice.model.type.IssueStatu;
 import com.technicalservice.util.UtilLog;
 
 /**
@@ -35,13 +37,22 @@ public class DashboardUserBean {
 	@EJB
 	private CustomerDao customerDao;
 
+	@EJB
+	private IssueDao issueDao;
+
 	private Long deviceCount;
+
+	private Long maintenanceCount;
+
+	private Long repairCount;
 
 	@PostConstruct
 	public void init() {
 		Customer customer = customerDao.findByUser(sessionObject.getUser());
 
 		deviceCount = deviceDao.getDeviceCount(customer);
+		maintenanceCount=issueDao.getIssueCount(customer, IssueStatu.MAINTENANCE);
+		repairCount=issueDao.getIssueCount(customer, IssueStatu.REPAIR);
 	}
 
 	public void redirectNew(String page) {
@@ -78,6 +89,22 @@ public class DashboardUserBean {
 
 	public void setDeviceCount(Long deviceCount) {
 		this.deviceCount = deviceCount;
+	}
+
+	public Long getMaintenanceCount() {
+		return maintenanceCount;
+	}
+
+	public void setMaintenanceCount(Long maintenanceCount) {
+		this.maintenanceCount = maintenanceCount;
+	}
+
+	public Long getRepairCount() {
+		return repairCount;
+	}
+
+	public void setRepairCount(Long repairCount) {
+		this.repairCount = repairCount;
 	}
 
 }

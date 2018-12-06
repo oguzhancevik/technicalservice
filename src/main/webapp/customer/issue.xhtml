@@ -1,0 +1,84 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c8="http://java.sun.com/jsf/composite/composite"
+	template="/WEB-INF/template/template.xhtml">
+
+	<ui:define name="head">
+		<style type="text/css">
+.ui-fileupload-content .ui-progressbar {
+	width: 0px;
+	height: 0px;
+	margin: 0
+}
+</style>
+
+	</ui:define>
+
+	<ui:define name="title">Bakım Onarım Kayıt</ui:define>
+
+	<ui:define name="content">
+		<h:form id="form">
+			<p:messages id="messages" showDetail="true" closable="true"/>
+			<p:importEnum type="com.technicalservice.model.type.IssueStatu"
+				var="IssueStatu" allSuffix="ALL_ENUM_VALUES" />
+			<div class="ui-g">
+				<div class="ui-g-10">
+					<div class="card card-w-title">
+						<h1>Bakım Onarım Kayıt</h1>
+
+						<p:panelGrid columns="4" layout="grid"
+							styleClass="ui-panelgrid-blank form-group">
+
+							<p:selectOneMenu value="#{customerIssueDetailBean.issue.issueStatu}"
+								converter="omnifaces.SelectItemsConverter" required="true"
+								requiredMessage="Lütfen Bakım/Onarım tipini seçiniz">
+								<f:selectItem itemLabel="Bakım/Onarım tipini Seçiniz" />
+								<f:selectItems value="#{typeBean.issueStatus}" var="statu"
+									itemValue="#{statu}" itemLabel="#{statu.displayName}" />
+								<p:ajax event="change" update="@form" />
+							</p:selectOneMenu>
+
+							<p:selectOneMenu value="#{customerIssueDetailBean.issue.device}"
+								converter="omnifaces.SelectItemsConverter" required="true"
+								requiredMessage="Lütfen cihaz seçiniz">
+								<f:selectItem itemLabel="Cihaz Seçiniz" />
+								<f:selectItems value="#{customerIssueDetailBean.devices}" var="device"
+									itemValue="#{device}"
+									itemLabel="#{device.brand} #{device.model}" />
+							</p:selectOneMenu>
+
+							<p:inputTextarea value="#{customerIssueDetailBean.issue.description}"
+								placeholder="Açıklama" rows="3" maxlength="500" />
+
+							<p:calendar value="#{customerIssueDetailBean.issue.date}"
+								placeholder="Bakım Tarihi" pattern="dd/MM/yyyy HH"
+								rendered="#{customerIssueDetailBean.issue.issueStatu.equals(IssueStatu.MAINTENANCE)}" />
+
+
+
+						</p:panelGrid>
+					</div>
+				</div>
+
+				<div class="ui-g-10">
+					<div class="card card-w-title">
+						<p:panelGrid columns="2"
+							styleClass="ui-panelgrid-blank form-group">
+							<p:commandButton value="VAZGEÇ"
+								action="issues.jsf?faces-redirect=true"
+								styleClass="pink-btn" />
+							<p:commandButton value="KAYDET"
+								action="#{customerIssueDetailBean.save('issues.jsf')}" process=":form"
+								onclick="start()" oncomplete="stop()" styleClass="green-btn" />
+						</p:panelGrid>
+					</div>
+				</div>
+			</div>
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>

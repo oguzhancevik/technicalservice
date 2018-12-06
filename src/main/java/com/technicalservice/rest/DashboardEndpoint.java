@@ -6,12 +6,17 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 
 import com.technicalservice.dao.CustomerDao;
 import com.technicalservice.dao.DeviceDao;
+import com.technicalservice.dao.IssueDao;
 import com.technicalservice.dao.UserDao;
 import com.technicalservice.model.entity.Customer;
+import com.technicalservice.model.entity.User;
+import com.technicalservice.model.type.IssueStatu;
 
 /**
  * Rest servis ile cihaz işlemleri yapılan sınıftır.
@@ -31,8 +36,12 @@ public class DashboardEndpoint {
 	@EJB
 	private DeviceDao deviceDao;
 
+	@EJB
+	private IssueDao issueDao;
+
 	/**
 	 * Url: http://localhost:8080/technicalservice/rest/dashboard/getCustomerCount
+	 * 
 	 * @return Müşteri sayısını döndürür.
 	 */
 	@GET
@@ -50,6 +59,7 @@ public class DashboardEndpoint {
 
 	/**
 	 * Url: http://localhost:8080/technicalservice/rest/dashboard/getAdminCount
+	 * 
 	 * @return Admin sayısını döndürür.
 	 */
 	@GET
@@ -64,12 +74,10 @@ public class DashboardEndpoint {
 		}
 		return Response.ok(adminCount).build();
 	}
-	
-
-	
 
 	/**
 	 * Url: http://localhost:8080/technicalservice/rest/dashboard/getDeviceCount
+	 * 
 	 * @return Sistemde kayıtlı cihazların sayısını döndürür
 	 */
 	@GET
@@ -86,8 +94,11 @@ public class DashboardEndpoint {
 	}
 
 	/**
-	 * Url: http://localhost:8080/technicalservice/rest/dashboard/getDeviceCount/mail@gmail.com
-	 * @param email cihaz sayısı döndürülecek olan müşteri maili
+	 * Url:
+	 * http://localhost:8080/technicalservice/rest/dashboard/getDeviceCount/mail@gmail.com
+	 * 
+	 * @param email
+	 *            cihaz sayısı döndürülecek olan müşteri maili
 	 * @return Cihaz sayısını döndürür
 	 */
 	@GET
@@ -102,6 +113,45 @@ public class DashboardEndpoint {
 			e.printStackTrace();
 		}
 		return Response.ok(deviceCount).build();
+	}
+
+	/**
+	 * Url1: http://localhost:8080/technicalservice/rest/dashboard/getIssueCount
+	 * 
+	 * Url2: http://localhost:8080/technicalservice/rest/dashboard/getIssueCount?deviceOwner=mail@gmail.com
+	 * 
+	 * Url3: http://localhost:8080/technicalservice/rest/dashboard/getIssueCount?issueStatu=REPAIR
+	 * 
+	 * Url4:
+	 * http://localhost:8080/technicalservice/rest/dashboard/getIssueCount?deviceOwner=mail@gmail.com&issueStatu=REPAIR
+	 * 
+	 * @return Sistemde kayıtlı olan Bakım / Onarım sayısını döndürür.
+	 */
+	@GET
+	@Path("/getIssueCount")
+	@Produces("application/json; charset=UTF-8")
+	public Response getIssueCount(@Context UriInfo uriInfo) {
+		Long issueCount = 0L;
+		try {
+
+			String deviceOwner = uriInfo.getQueryParameters().getFirst("deviceOwner");
+			String issueStatu = uriInfo.getQueryParameters().getFirst("issueStatu");
+
+			Customer customer = null;
+			IssueStatu is = null;
+			if (deviceOwner != null) {
+				customer = new Customer(new User());
+				customer = customerDao.findByUser(userDao.findByEmail(deviceOwner));
+			}
+			if (issueStatu != null) {
+				is = IssueStatu.valueOf(issueStatu);
+			}
+
+			issueCount = issueDao.getIssueCount(customer, is);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return Response.ok(issueCount).build();
 	}
 
 }

@@ -64,4 +64,9 @@ public class User extends ExtendedModel {
 		this.memberStatu = memberStatu;
 	}
 
+	@Override
+	public String toString() {
+		return "User [email=" + email + ", role=" + role + "]";
+	}
+
 }

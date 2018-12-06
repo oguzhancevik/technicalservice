@@ -1,0 +1,131 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c8="http://java.sun.com/jsf/composite/composite"
+	template="/WEB-INF/template/template.xhtml">
+
+
+	<ui:define name="head">
+		<style type="text/css">
+.APPROVED {
+	background-color: lightgreen !important;
+	background-image: none;
+}
+
+.BLOCKED {
+	background-color: orange !important;
+	background-image: none;
+}
+
+.WAITING {
+	background-color: lightblue !important;
+	background-image: none;
+}
+
+.DENIED {
+	background-color: red !important;
+	background-image: none;
+}
+
+.pasif-nodisplay {
+	display: none;
+}
+</style>
+
+	</ui:define>
+
+	<ui:define name="title">Arıza / Bakım Kayıtları</ui:define>
+
+	<ui:define name="content">
+		<h:form id="form">
+			<p:growl id="growl" showDetail="true" sticky="true" />
+			<div class="ui-g dashboard">
+				<div class="ui-g-12 ui-md-6 ui-lg-12 card">
+					<h1>Arıza / Bakım Kayıtları</h1>
+
+					<p:dataTable value="#{adminIssueListBean.listModel}" var="data"
+						reflow="true" rowIndexVar="rowInd" paginator="true" rows="10">
+
+						<p:column headerText="Sıra" sortBy="#{rowInd+1}" width="5%">
+							<h:outputText value="#{rowInd+1}" />
+						</p:column>
+
+						<p:column style="width:25%">
+
+							<p:panelGrid columns="1">
+								<p:inputTextarea
+									value="#{adminIssueListBean.process.description}"
+									placeholder="Ürün Açıklaması" maxlength="200" />
+
+								<p:selectOneMenu value="#{adminIssueListBean.processType}"
+									converter="omnifaces.SelectItemsConverter">
+									<f:selectItem itemLabel="Bakım/Onarım tipini Seçiniz" />
+									<f:selectItems value="#{typeBean.processTypes}" var="process"
+										itemValue="#{process}" itemLabel="#{process.displayName}" />
+								</p:selectOneMenu>
+
+								<p:commandButton value="İşlemi Bitir"
+									action="#{adminIssueListBean.sendMail(data)}" update="@form" />
+
+							</p:panelGrid>
+
+
+						</p:column>
+
+						<p:column headerText="Cihaz">
+							<h:outputText value="#{data.device.brand} #{data.device.model}" />
+						</p:column>
+
+
+
+						<p:column headerText="Resim">
+							<p:graphicImage value="/image?name=#{data.device.image}"
+								height="70" width="70" />
+						</p:column>
+
+						<p:column headerText="Bakım/Onarım" sortBy="#{data.issueStatu}">
+							<h:outputText value="#{data.issueStatu}" />
+						</p:column>
+
+						<p:column headerText="Açıklama" sortBy="#{data.description}">
+							<h:outputText value="#{data.description}" />
+						</p:column>
+
+						<p:column headerText="Tarih" sortBy="#{data.date}">
+							<h:outputText value="#{data.date}">
+								<f:convertDateTime type="date" pattern="dd-MM-yyyy HH:mm" />
+							</h:outputText>
+						</p:column>
+
+						<p:column headerText="Durum"
+							sortBy="#{data.processType.displayName}">
+							<h:outputText value="#{data.processType.displayName}" />
+						</p:column>
+
+						<p:column headerText="İşlem Geçmişi" style="width:20%">
+							<p:dataList value="#{data.processes}" var="process"
+								paginator="true" rows="3" styleClass="paginated">
+							#{process.date} - #{process.description}
+							</p:dataList>
+						</p:column>
+
+
+					</p:dataTable>
+
+					<p:dialog header="Kaydet" widgetVar="dialog" modal="true"
+						height="200" width="300">
+
+					</p:dialog>
+
+
+
+
+				</div>
+			</div>
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>

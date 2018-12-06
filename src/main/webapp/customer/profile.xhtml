@@ -46,15 +46,6 @@
 							<p:calendar value="#{customerDetailBean.customer.birthDate}"
 								pattern="dd-MM-yyyy" mask="true" placeholder="Doğum Tarihi" />
 
-							<p:selectOneMenu id="memberStatu"
-								value="#{customerDetailBean.customer.user.memberStatu}"
-								converter="omnifaces.SelectItemsConverter" required="true"
-								requiredMessage="Lütfen üyelik durumunu seçiniz">
-								<f:selectItem itemLabel="Üyelik Durumunu Seçiniz" />
-								<f:selectItems value="#{typeBean.memberStatus}" var="statu"
-									itemValue="#{statu}" itemLabel="#{statu.displayName}" />
-							</p:selectOneMenu>
-
 							<p:selectOneMenu id="genders"
 								value="#{customerDetailBean.customer.gender}"
 								converter="omnifaces.SelectItemsConverter">

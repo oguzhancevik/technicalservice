@@ -1,11 +1,15 @@
 package com.technicalservice.model.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.technicalservice.model.base.ExtendedModel;
@@ -29,6 +33,7 @@ public class Device extends ExtendedModel {
 
 	private String deviceType;
 
+	@Temporal(TemporalType.DATE)
 	private Date productionDate;
 
 	private Integer guaranteePeriod;
@@ -42,6 +47,9 @@ public class Device extends ExtendedModel {
 	private Integer width;
 
 	private Integer kg;
+	
+	@OneToMany(mappedBy = "device", fetch = FetchType.LAZY)
+	private List<Issue> issues;
 
 	public Customer getOwner() {
 		return owner;
