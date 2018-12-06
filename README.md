@@ -90,3 +90,13 @@
 7- Admin Bakım / Onarım
 <br/>
 ![Bakım / Onarım CRUD](https://raw.githubusercontent.com/oguzhancevik/technicalservice/master/analiz/ekran/06-adminIssue.gif)
+
+
+### Kaynaklar
+[JavaDoc](https://github.com/oguzhancevik/technicalservice/tree/master/javadoc)
+<br/>
+[Uml Class Diagram](https://github.com/oguzhancevik/technicalservice/tree/master/uml)
+<br/>
+[Rest Screenshots](https://github.com/oguzhancevik/technicalservice/tree/master/analiz/rest)
+<br/>
+[YouTube Playlist](https://www.youtube.com/playlist?list=PLfFIom4mu859IytYr4gPFFabvOnWp1w3f)
