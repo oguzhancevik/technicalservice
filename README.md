@@ -4,9 +4,12 @@
 * WildFly 10
 * Hibernate 
 * PostgreSQL 
+* Maven
 
 
 ### Kurulum
+
+* ` WEB-INF/lib/ ` dizini altındaki jar dosyaları maven olarak bulunmadığı için projeye dahil etmelisiniz.
 
 * Uygulamada Security kullanıldığı için WildFly dizini altında ` standalone/configuration/standalone.xml ` içine aşağıdaki bilgileri eklemelisiniz.
 
