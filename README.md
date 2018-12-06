@@ -6,7 +6,7 @@
 * PostgreSQL 
 * Maven
 
-### Sistem Özellikleri
+### Sistem Özellikleri :zap:
 
 Sistem Kabiliyetleri
 
@@ -78,7 +78,7 @@ Sistem Kabiliyetleri
 
 * Yüklenen resimlerin yolunu `  com/technicalservice/resource/Prefix.java ` sınıfından ayarlayabilirsiniz. Daha sonra belirttiğiniz klasörün içine image adında bir klasör daha eklemelisiniz. Ayrıca belirttiğiniz adresin yazma ve okuma yetkisi olmalıdır.
 
-### Kullanım
+### Kullanım :heavy_check_mark:
 
 1- Admin Dashboard 
 <br/>
@@ -115,7 +115,7 @@ Sistem Kabiliyetleri
 ![Bakım / Onarım CRUD](https://raw.githubusercontent.com/oguzhancevik/technicalservice/master/analiz/ekran/06-adminIssue.gif)
 
 
-### Kaynaklar
+### Kaynaklar :information_source:
 [JavaDoc](https://github.com/oguzhancevik/technicalservice/tree/master/javadoc)
 <br/>
 [Uml Class Diagram](https://github.com/oguzhancevik/technicalservice/tree/master/uml)
