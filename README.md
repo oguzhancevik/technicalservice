@@ -18,13 +18,17 @@
 
 5- Bloke olan müşteriler ise siteye erişimezler.
 
-6- Admin kullanıcısı Customer kullanıcısının açtığı bakım onarım işleri ile ilgilenmektedir.
+6- Admin dasboard ekranında sistemle alakalı bilgiler verilmektedir. Ör; aktif müşteri sayısı, aktif cihaz sayısı, bakım / onarım sayısı, admin sayısı gibi.
 
-7- Bir müşteri cihazında arıza kaydı veya bakım kaydı yaptırmak istiyor ise ilk önce sisteme üye olmalıdır. Daha sonra cihaz kaydı yapmalı ve hangi cihaz üzerinde işlem yapacaksa ona göre bir issue açmalıdır.
+7- Müşteri dashboard ekranında müşteri ile ilgili verilmektedir. Müşteri cihaz sayısı, Ör; Müşteri bakım / onarım talep sayısı.
 
-8- Bir ürün üzerinde birden fazla admin işlem yapamaz.
+8- Admin kullanıcısı Customer kullanıcısının açtığı bakım onarım işleri ile ilgilenmektedir.
 
-9- Bakım tarihi gelen cihaz için kullanıcıya otomatik mail atılır. Veya bir cihaz üzerinde herhangi bir parça değişikliği olmuş ise bu bilgide kullanıcıya mail olarak gider.
+9- Bir müşteri cihazında arıza kaydı veya bakım kaydı yaptırmak istiyor ise ilk önce sisteme üye olmalıdır. Daha sonra cihaz kaydı yapmalı ve hangi cihaz üzerinde işlem yapacaksa ona göre bir issue açmalıdır.
+
+10- Bir ürün üzerinde birden fazla admin işlem yapamaz.
+
+11- Bakım tarihi gelen cihaz için kullanıcıya otomatik mail atılır. Veya bir cihaz üzerinde herhangi bir parça değişikliği olmuş ise bu bilgide kullanıcıya mail olarak gider.
 
 
 ### Kurulum :closed_lock_with_key:
