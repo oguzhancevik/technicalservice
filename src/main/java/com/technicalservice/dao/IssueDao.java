@@ -70,31 +70,6 @@ public class IssueDao extends BaseDao<Issue> {
 		return issueCount;
 	}
 
-	@SuppressWarnings("unchecked")
-	public List<Issue> getIssues(Customer deviceOwner, IssueStatu issueStatu) {
-
-		List<Issue> issues = new ArrayList<>();
-
-		StringBuilder query = new StringBuilder(" SELECT FROM Issue i JOIN FETCH i.device d WHERE i.status=1 ");
-
-		if (deviceOwner != null && issueStatu == null) {
-			query.append(" AND i.deviceOwner= :deviceOwner ");
-			issues = entityManager.createQuery(query.toString()).setParameter("deviceOwner", deviceOwner)
-					.getResultList();
-		} else if (issueStatu != null && deviceOwner == null) {
-			query.append(" AND i.issueStatu= :issueStatu ");
-			issues = entityManager.createQuery(query.toString()).setParameter("issueStatu", issueStatu).getResultList();
-		} else if (issueStatu != null && deviceOwner != null) {
-			query.append(" AND i.deviceOwner= :deviceOwner AND i.issueStatu= :issueStatu ");
-			issues = entityManager.createQuery(query.toString()).setParameter("deviceOwner", deviceOwner)
-					.setParameter("issueStatu", issueStatu).getResultList();
-		} else {
-			issues = entityManager.createQuery(query.toString()).getResultList();
-		}
-
-		return issues;
-	}
-
 	/**
 	 * 
 	 * @param issueStatu
