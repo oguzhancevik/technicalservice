@@ -120,6 +120,6 @@
 <br/>
 [Uml Class Diagram](https://github.com/oguzhancevik/technicalservice/tree/master/uml)
 <br/>
-[Rest Screenshots](https://github.com/oguzhancevik/technicalservice/tree/master/analiz/rest)
+[Rest Servisleri Ekran Görüntüleri](https://github.com/oguzhancevik/technicalservice/tree/master/analiz/rest)
 <br/>
 [YouTube Playlist](https://www.youtube.com/playlist?list=PLfFIom4mu859IytYr4gPFFabvOnWp1w3f)
