@@ -79,14 +79,14 @@
 
 						<p:column headerText="Onay/Ret"  width="12%">
 							<p:commandButton value="BLOKE"
-								action="#{customerListBean.save(data, MemberStatu.BLOCKED)}"
+								action="#{adminListBean.save(data, MemberStatu.BLOCKED)}"
 								process="@this" styleClass="orange-btn" icon="ui-icon-alert"
 								iconPos="left"
 								rendered="#{data.memberStatu.equals(MemberStatu.APPROVED)}"
 								update="@form" />
 							<p:spacer width="1" height="10" />
 							<p:commandButton value="ONAYLA"
-								action="#{customerListBean.save(data, MemberStatu.APPROVED)}"
+								action="#{adminListBean.save(data, MemberStatu.APPROVED)}"
 								process="@this" styleClass="green-btn" icon="ui-icon-check"
 								iconPos="left"
 								rendered="#{data.memberStatu!=MemberStatu.APPROVED}"
