@@ -10,9 +10,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
-import javax.persistence.Column;
-import javax.persistence.PersistenceException;
-import javax.persistence.Table;
 
 import com.technicalservice.controller.SessionObject;
 import com.technicalservice.controller.TypeBean;
@@ -61,28 +58,13 @@ public abstract class BaseBean<T extends ExtendedModel> implements Serializable 
 	}
 
 	public Boolean save() {
-		String columnName = null;
 		try {
 			getBaseDao().save(selectedModel);
 			FacesMessage mesaj1 = new FacesMessage("Kayıt İşlemi Tamamlandı", "");
 			FacesContext.getCurrentInstance().addMessage("", mesaj1);
 			return true;
 		} catch (Exception e) {
-			if (e.getCause().getCause() instanceof PersistenceException) {
-				try {
-					columnName = selectedModel.getClass()
-							.getDeclaredField(
-									selectedModel.getClass().getDeclaredAnnotation(Table.class).uniqueConstraints()[0]
-											.columnNames()[0])
-							.getDeclaredAnnotation(Column.class).columnDefinition();
-					UtilLog.logToScreen(FacesMessage.SEVERITY_ERROR, "Hata",
-							columnName + " isimli kolon daha önce kullanışmıştır.");
-
-				} catch (NoSuchFieldException | SecurityException e1) {
-					e1.printStackTrace();
-				}
-
-			}
+			e.printStackTrace();
 			return false;
 		}
 
@@ -112,6 +94,26 @@ public abstract class BaseBean<T extends ExtendedModel> implements Serializable 
 	private Class<T> getClassType() {
 		ParameterizedType parameterizedType = (ParameterizedType) getClass().getGenericSuperclass();
 		return (Class<T>) parameterizedType.getActualTypeArguments()[0];
+	}
+
+	public abstract BaseDao<T> getBaseDao();
+
+	public void redirectNew(String page) {
+		try {
+			FacesContext.getCurrentInstance().getExternalContext().redirect(page);
+		} catch (IOException e) {
+			UtilLog.logToScreen(e);
+		}
+	}
+
+	public void redirectUpdate(String page) {
+		try {
+			Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+			flash.put("model", selectedModel);
+			FacesContext.getCurrentInstance().getExternalContext().redirect(page);
+		} catch (IOException e) {
+			UtilLog.logToScreen(e);
+		}
 	}
 
 	public SessionObject getSessionObject() {
@@ -146,23 +148,4 @@ public abstract class BaseBean<T extends ExtendedModel> implements Serializable 
 		this.selectedModel = selectedModel;
 	}
 
-	public abstract BaseDao<T> getBaseDao();
-
-	public void redirectNew(String page) {
-		try {
-			FacesContext.getCurrentInstance().getExternalContext().redirect(page);
-		} catch (IOException e) {
-			UtilLog.logToScreen(e);
-		}
-	}
-
-	public void redirectUpdate(String page) {
-		try {
-			Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
-			flash.put("model", selectedModel);
-			FacesContext.getCurrentInstance().getExternalContext().redirect(page);
-		} catch (IOException e) {
-			UtilLog.logToScreen(e);
-		}
-	}
 }
