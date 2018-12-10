@@ -48,6 +48,8 @@
 
 * ` WEB-INF/lib/ ` dizini altındaki jar dosyaları maven olarak bulunmadığı için projeye dahil etmelisiniz.
 
+* PostgreSql içine TechnicalService adında bir veritabanı oluşturmalısınız.
+
 * Uygulamada Security kullanıldığı için WildFly dizini altında ` standalone/configuration/standalone.xml ` içine aşağıdaki bilgileri eklemelisiniz.
 
 ` <datasources> </datasources> ` etiketleri arasına aşağıdaki kodu kopyalayınız.

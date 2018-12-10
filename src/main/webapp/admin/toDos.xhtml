@@ -1,0 +1,91 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c8="http://java.sun.com/jsf/composite/composite"
+	template="/WEB-INF/template/template.xhtml">
+
+
+	<ui:define name="head"></ui:define>
+
+	<ui:define name="title">To-Do Listesi</ui:define>
+
+	<ui:define name="content">
+		<h:form id="form">
+			<p:importEnum type="com.technicalservice.model.type.ProcessType"
+				var="ProcessType" allSuffix="ALL_ENUM_VALUES" />
+			<p:growl id="growl" showDetail="true" sticky="true" />
+			<div class="ui-g dashboard">
+				<div class="ui-g-12 ui-md-6 ui-lg-12 card">
+					<h1>To-Do Listesi</h1>
+
+					<p:dataTable value="#{toDoListBean.listModel}" var="data"
+						reflow="true" rowIndexVar="rowInd" paginator="true" rows="10">
+
+						<p:column headerText="Sıra" sortBy="#{rowInd+1}" width="5%">
+							<h:outputText value="#{rowInd+1}" />
+						</p:column>
+
+						<p:column headerText="İşlem" exportable="true" width="12%">
+							<p:commandLink value="GÜNCELLE"
+								action="#{toDoListBean.updatePage(data, 'toDo.jsf')}"
+								process="@this" style="color:blue" />
+							<p:spacer width="10" height="10" />
+							<p:commandLink value="SİL" action="#{toDoListBean.remove(data)}"
+								update=":form" style="color:red" immediate="true">
+								<p:confirm header="ONAY" message="Bu kayıt silinsin mi?"
+									icon="ui-icon-alert" />
+							</p:commandLink>
+						</p:column>
+
+						<p:column headerText="Başlık" sortBy="#{data.title}">
+							<h:outputText value="#{data.title}" />
+						</p:column>
+
+						<p:column headerText="Açıklama" sortBy="#{data.description}">
+							<h:outputText value="#{data.description}" />
+						</p:column>
+						
+						<p:column headerText="Deadline" sortBy="#{data.deadline}">
+							<h:outputText value="#{data.deadline}">
+								<f:convertDateTime type="date" pattern="dd-MM-yyyy HH:mm" />
+							</h:outputText>
+						</p:column>
+
+
+
+						<p:column headerText="Onay/Ret" width="10%">
+							<p:commandButton value="Devam Ediyor"
+								action="#{toDoListBean.changeProcessType(data, ProcessType.WAITING)}"
+								process="@this" styleClass="orange-btn" icon=" ui-icon-closethick"
+								iconPos="left"
+								rendered="#{data.processType.equals(ProcessType.END)}"
+								update="@form" />
+							<p:spacer width="1" height="10" />
+							<p:commandButton value="Bitti"
+								action="#{toDoListBean.changeProcessType(data, ProcessType.END)}"
+								process="@this" styleClass="blue-btn" icon="ui-icon-check"
+								iconPos="left"
+								rendered="#{data.processType.equals(ProcessType.WAITING)}"
+								update="@form" />
+						</p:column>
+
+
+						<f:facet name="footer">
+							<p:commandButton value="YENİ GİRİŞ" process="@this"
+								action="#{toDoListBean.redirectNew('toDo.jsf')}"
+								onstart="start()" oncomplete="stop()" styleClass="green-btn"
+								style="width:auto;margin-bottom:10px;" />
+						</f:facet>
+
+
+					</p:dataTable>
+
+				</div>
+			</div>
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>

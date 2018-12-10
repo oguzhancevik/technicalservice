@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
 import com.technicalservice.controller.base.BaseBean;
@@ -27,9 +26,6 @@ public class CustomerIssueListBean extends BaseBean<Issue> {
 
 	private static final long serialVersionUID = 1L;
 
-	@ManagedProperty(value = "#{sessionObject}")
-	private SessionObject sessionObject;
-
 	@EJB
 	private IssueDao issueDao;
 
@@ -50,14 +46,6 @@ public class CustomerIssueListBean extends BaseBean<Issue> {
 		Customer customer = new Customer();
 		customer = customerDao.findByUser(getSessionObject().getUser());
 		return issueDao.listIssuesByCustomer(customer);
-	}
-
-	public SessionObject getSessionObject() {
-		return sessionObject;
-	}
-
-	public void setSessionObject(SessionObject sessionObject) {
-		this.sessionObject = sessionObject;
 	}
 
 }

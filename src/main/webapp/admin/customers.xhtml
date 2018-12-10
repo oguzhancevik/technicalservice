@@ -7,34 +7,7 @@
 	template="/WEB-INF/template/template.xhtml">
 
 
-	<ui:define name="head">
-		<style type="text/css">
-.APPROVED {
-	background-color: lightgreen !important;
-	background-image: none;
-}
-
-.BLOCKED {
-	background-color: orange !important;
-	background-image: none;
-}
-
-.WAITING {
-	background-color: lightblue !important;
-	background-image: none;
-}
-
-.DENIED {
-	background-color: red !important;
-	background-image: none;
-}
-
-.pasif-nodisplay {
-	display: none;
-}
-</style>
-
-	</ui:define>
+	<ui:define name="head"></ui:define>
 
 	<ui:define name="title">Tüm Müşteriler</ui:define>
 
@@ -73,7 +46,8 @@
 							<h:outputText value="#{data.name}" />
 						</p:column>
 
-						<p:column headerText="Soyisim" sortBy="#{data.surname}" width="10%">
+						<p:column headerText="Soyisim" sortBy="#{data.surname}"
+							width="10%">
 							<h:outputText value="#{data.surname}" />
 						</p:column>
 
@@ -89,11 +63,12 @@
 							<h:outputText value="#{data.user.role}" />
 						</p:column>
 
-						<p:column headerText="Statu" sortBy="#{data.user.memberStatu.displayName}" width="10%">
+						<p:column headerText="Statu"
+							sortBy="#{data.user.memberStatu.displayName}" width="10%">
 							<h:outputText value="#{data.user.memberStatu.displayName}" />
 						</p:column>
 
-						<p:column headerText="Onay/Ret"  width="10%">
+						<p:column headerText="Onay/Ret" width="10%">
 							<p:commandButton value="BLOKE"
 								action="#{customerListBean.save(data, MemberStatu.BLOCKED)}"
 								process="@this" styleClass="orange-btn" icon="ui-icon-alert"

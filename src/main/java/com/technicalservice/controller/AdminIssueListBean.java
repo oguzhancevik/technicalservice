@@ -7,7 +7,6 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
 import com.technicalservice.controller.base.BaseBean;
@@ -30,9 +29,6 @@ import com.technicalservice.util.UtilLog;
 public class AdminIssueListBean extends BaseBean<Issue> {
 
 	private static final long serialVersionUID = 1L;
-
-	@ManagedProperty(value = "#{sessionObject}")
-	private SessionObject sessionObject;
 
 	@EJB
 	private IssueDao issueDao;
@@ -63,10 +59,10 @@ public class AdminIssueListBean extends BaseBean<Issue> {
 	 */
 	public void sendMail(Issue issue) {
 		try {
-			if (issue.getRepairman() != null && issue.getRepairman().getId() != sessionObject.getUser().getId()) {
+			if (issue.getRepairman() != null && issue.getRepairman().getId() != getSessionObject().getUser().getId()) {
 				UtilLog.logToScreen(FacesMessage.SEVERITY_ERROR, "HATA", "Bu işlemi başka bir kullanıcı üstlendi!");
 			} else {
-				issue.setRepairman(sessionObject.getUser());
+				issue.setRepairman(getSessionObject().getUser());
 				issue.setProcessType(processType);
 
 				process.setIssue(issue);
@@ -89,14 +85,6 @@ public class AdminIssueListBean extends BaseBean<Issue> {
 		} catch (Exception e) {
 			UtilLog.log(e);
 		}
-	}
-
-	public SessionObject getSessionObject() {
-		return sessionObject;
-	}
-
-	public void setSessionObject(SessionObject sessionObject) {
-		this.sessionObject = sessionObject;
 	}
 
 	public Process getProcess() {
