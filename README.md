@@ -30,18 +30,15 @@
 
 11- Bakım tarihi gelen cihaz için kullanıcıya otomatik mail atılır. Veya bir cihaz üzerinde herhangi bir parça değişikliği olmuş ise bu bilgide kullanıcıya mail olarak gider.
 
+12- Admin kullanıcıları to-do (yapılacak) listesi ekleyebilecek. Her admin kullanıcısının birden fazla to-do listesi olabilecek. 
 
-### Yakında Eklenecek Özelllikler :boom:
+13- Her to-do listesinin ismi, açıklaması, bitiş tarihi, statusu ve varsa bağımlı alt to-do listeleri olabilir.
 
-1- Admin kullanıcıları to-do (yapılacak) listesi ekleyebilecek. Her admin kullanıcısının birden fazla to-do listesi olabilecek. 
+14- To-do listesinin statusu <code>devam ediyor</code> , <code>tamamlandı</code> olarak işaretlenebilir. 
 
-2- Her to-do listesinin ismi, açıklaması, bitiş tarihi, statusu ve varsa bağımlı alt to-do listeleri olabilir.
+15- Admin kullanıcısı to-do listelerini görüntüleyebilir, güncelleyebilir, silebilirler. Yada mevcut to-do listesine yapılacak to-do item ekleyebilirler.
 
-3- To-do listesinin statusu <code>devam ediyor</code> , <code>tamamlandı</code> olarak işaretlenebilir. 
-
-4- Admin kullanıcısı to-do listelerini görüntüleyebilir, güncelleyebilir, silebilirler. Yada mevcut to-do listesine yapılacak to-do item ekleyebilirler.
-
-5- To-do listeleri arasında bağımlılık olabilir. Eğer bir to-do listesinde bağımlı olan alt to-do listeler olabilir. Eğer bu bağımlı alt to-do listelerinden herhangi biri <code>tamamlandı</code> olarak işaretlenmemiş ise ana liste <code>tamamlandı</code> olarak işaretlenemez.
+16- To-do listeleri arasında bağımlılık olabilir. Eğer bir to-do listesinde bağımlı olan alt to-do listeler olabilir. Eğer bu bağımlı alt to-do listelerinden herhangi biri <code>tamamlandı</code> olarak işaretlenmemiş ise ana liste <code>tamamlandı</code> olarak işaretlenemez.
 
 
 ### Kurulum :closed_lock_with_key:
