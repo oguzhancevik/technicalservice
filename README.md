@@ -33,13 +33,15 @@
 
 ### Yakında Eklenecek Özelllikler :boom:
 
-1- Admin kullanıcıları to-do (yapılacak) listesi ekleyebilecek. Her admin kullanıcısının birden fazla to-do listesi olabilecek. Her to-do listesinin ismi, açıklaması, bitiş tarihi, statusu ve varsa bağımlı alt to-do listeleri olabilir.
+1- Admin kullanıcıları to-do (yapılacak) listesi ekleyebilecek. Her admin kullanıcısının birden fazla to-do listesi olabilecek. 
 
-2- To-do listesinin statusu <code>devam ediyor</code> , <code>tamamlandı</code> olarak işaretlenebilir. 
+2- Her to-do listesinin ismi, açıklaması, bitiş tarihi, statusu ve varsa bağımlı alt to-do listeleri olabilir.
 
-3- Admin kullanıcısı to-do listelerini görüntüleyebilir, güncelleyebilir, silebilirler. Yada mevcut to-do listesine yapılacak to-do item ekleyebilirler.
+3- To-do listesinin statusu <code>devam ediyor</code> , <code>tamamlandı</code> olarak işaretlenebilir. 
 
-4- To-do listeleri arasında bağımlılık olabilir. Eğer bir to-do listesinde bağımlı olan alt to-do listeler olabilir. Eğer bu bağımlı alt to-do listelerinden herhangi biri <code>tamamlandı</code> olarak işaretlenmemiş ise ana liste <code>tamamlandı</code> olarak işaretlenemez.
+4- Admin kullanıcısı to-do listelerini görüntüleyebilir, güncelleyebilir, silebilirler. Yada mevcut to-do listesine yapılacak to-do item ekleyebilirler.
+
+5- To-do listeleri arasında bağımlılık olabilir. Eğer bir to-do listesinde bağımlı olan alt to-do listeler olabilir. Eğer bu bağımlı alt to-do listelerinden herhangi biri <code>tamamlandı</code> olarak işaretlenmemiş ise ana liste <code>tamamlandı</code> olarak işaretlenemez.
 
 
 ### Kurulum :closed_lock_with_key:
