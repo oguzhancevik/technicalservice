@@ -35,7 +35,7 @@
 
 1- Admin kullanıcıları to-do (yapılacak) listesi ekleyebilecek. Her admin kullanıcısının birden fazla to-do listesi olabilecek. Her to-do listesinin ismi, açıklaması, bitiş tarihi, statusu ve varsa bağımlı alt to-do listeleri olabilir.
 
-2- To-do listesinin statusu <code> devam ediyor </code>, <code> başarılı </code>, <code> başarısız olarak işaretlenebilir. </code>
+2- To-do listesinin statusu <code> devam ediyor </code>, <code> başarılı </code>, <code> başarısız </code> olarak işaretlenebilir. 
 
 3- Admin kullanıcısı to-do listelerini görüntüleyebilir, güncelleyebilir, silebilirler. Yada mevcut to-do listesine yapılacak to-do item ekleyebilirler.
 
