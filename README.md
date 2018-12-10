@@ -31,6 +31,17 @@
 11- Bakım tarihi gelen cihaz için kullanıcıya otomatik mail atılır. Veya bir cihaz üzerinde herhangi bir parça değişikliği olmuş ise bu bilgide kullanıcıya mail olarak gider.
 
 
+### Yakında Eklenecek Özelllikler :boom:
+
+1- Admin kullanıcıları için to-do (yapılacak) listesi ekleyebilecek. Her admin kullanıcısının birden fazla to-do listesi olabilecek. Her to-do listesinin ismi, açıklaması, bitiş tarihi, statusu ve varsa bağımlı alt to-do listeleri olabilir.
+
+2- To-do listesinin statusu devam ediyor, başarılı, başarısız olarak işaretlenebilir.
+
+3- Admin kullanıcısı to-do listelerini görüntüleyebilir, güncelleyebilir, silebilirler. Yada mevcut to-do listesine yapılacak to-do item ekleyebilirler.
+
+4- To-do listeleri arasında bağımlılık olabilir. Eğer bir to-do listesinde bağımlı olan to-do listeler var ise bu bağımlı to-do listelerinden herhangi biri tamamlanmamış ise ana liste tamamlandı olarak işaretlenemez.
+
+
 ### Kurulum :closed_lock_with_key:
 
 * ` WEB-INF/lib/ ` dizini altındaki jar dosyaları maven olarak bulunmadığı için projeye dahil etmelisiniz.
