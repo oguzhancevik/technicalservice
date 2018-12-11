@@ -58,7 +58,6 @@ public class ToDoDetailBean extends BaseBean<ToDo> {
 
 		toDo = new ToDo(new User());
 		toDo.setToDos(new ArrayList<>());
-
 		toDos = toDoDao.getToDosByProcessType(ProcessType.WAITING);
 	}
 
