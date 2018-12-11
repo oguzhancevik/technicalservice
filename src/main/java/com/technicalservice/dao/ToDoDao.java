@@ -31,7 +31,7 @@ public class ToDoDao extends BaseDao<ToDo> {
 	 */
 	@SuppressWarnings("unchecked")
 	public List<ToDo> getToDosByProcessType(ProcessType processType) {
-		return entityManager.createQuery("SELECT t FROM ToDo t WHERE t.processType= :processType ")
+		return entityManager.createQuery("SELECT t FROM ToDo t WHERE t.processType= :processType ORDER BY t.id")
 				.setParameter("processType", processType).getResultList();
 	}
 
@@ -43,7 +43,7 @@ public class ToDoDao extends BaseDao<ToDo> {
 	 */
 	@SuppressWarnings("unchecked")
 	public List<ToDo> getToDosByUser(User owner) {
-		return entityManager.createQuery("SELECT t FROM ToDo t WHERE t.owner= :owner").setParameter("owner", owner)
+		return entityManager.createQuery("SELECT t FROM ToDo t WHERE t.owner= :owner ORDER BY t.id").setParameter("owner", owner)
 				.getResultList();
 	}
 

@@ -64,6 +64,9 @@ public class CustomerListBean extends BaseBean<Customer> {
 
 	}
 
+	/**
+	 * Sistemden pasif edilecek müşterinin user statusu 0 yapılır.
+	 */
 	@Override
 	public void remove(Customer removeModel) {
 		removeModel.getUser().setStatus(0);

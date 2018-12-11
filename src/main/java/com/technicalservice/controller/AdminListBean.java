@@ -62,10 +62,4 @@ public class AdminListBean extends BaseBean<User> {
 
 	}
 
-	@Override
-	public void remove(User user) {
-		user.setStatus(0);
-		super.remove(user);
-	}
-
 }

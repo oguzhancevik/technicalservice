@@ -20,7 +20,7 @@ public class DeviceDao extends BaseDao<Device> {
 
 	@SuppressWarnings("unchecked")
 	public List<Device> listDevicesByCustomer(Customer owner) {
-		return entityManager.createQuery("SELECT d FROM Device d where d.owner= :owner AND d.status=1")
+		return entityManager.createQuery("SELECT d FROM Device d where d.owner= :owner AND d.status=1 ORDER BY d.id")
 				.setParameter("owner", owner).getResultList();
 	}
 
@@ -33,12 +33,12 @@ public class DeviceDao extends BaseDao<Device> {
 	public Long getDeviceCount(Customer owner) {
 
 		Long deviceCount;
-		StringBuilder query = new StringBuilder(" SELECT COUNT(d) FROM Device d WHERE d.status=1 ");
+		StringBuilder query = new StringBuilder(" SELECT COUNT(d) FROM Device d WHERE d.status=1");
 
 		if (owner == null) {
 			deviceCount = (Long) entityManager.createQuery(query.toString()).getSingleResult();
 		} else {
-			query.append(" AND d.owner= :owner ");
+			query.append(" AND d.owner= :owner");
 			deviceCount = (Long) entityManager.createQuery(query.toString()).setParameter("owner", owner)
 					.getSingleResult();
 		}

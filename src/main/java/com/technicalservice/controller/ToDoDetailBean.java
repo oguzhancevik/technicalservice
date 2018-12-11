@@ -9,6 +9,8 @@ import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
 
 import com.technicalservice.controller.base.BaseBean;
 import com.technicalservice.dao.ToDoDao;
@@ -44,12 +46,16 @@ public class ToDoDetailBean extends BaseBean<ToDo> {
 	@Override
 	@PostConstruct
 	public void init() {
-		super.init();
 
-		getSelectedModel().setOwner(new User());
+		setSelectedModel(new ToDo(new User()));
 		getSelectedModel().setToDos(new ArrayList<>());
 		getSelectedModel().setProcessType(ProcessType.WAITING);
-		
+
+		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+		if (flash.containsKey("model")) {
+			setSelectedModel((ToDo) flash.get("model"));
+		}
+
 		toDo = new ToDo(new User());
 		toDo.setToDos(new ArrayList<>());
 

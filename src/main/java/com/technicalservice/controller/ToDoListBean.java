@@ -52,6 +52,14 @@ public class ToDoListBean extends BaseBean<ToDo> {
 	 */
 	public void changeProcessType(ToDo toDo, ProcessType processType) {
 		try {
+			// Burada görev process type end yapılmak isteniyorsa eğer o todo-list altındaki
+			// todo-listler hala bitmemiş ise uyarı veriyor
+			if (processType.equals(ProcessType.END) && toDo.getToDos().stream()
+					.filter(e -> e.getProcessType().equals(ProcessType.WAITING)).findAny().isPresent()) {
+				UtilLog.logToScreen(FacesMessage.SEVERITY_INFO, "Uyarı",
+						"Bağımlı alt To-Do listeleri henüz tamamlanmamış!");
+				return;
+			}
 			toDo.setProcessType(processType);
 			toDoDao.save(toDo);
 			UtilLog.logToScreen(FacesMessage.SEVERITY_INFO, "Başarılı", "İşlem tipi değiştirildi!");

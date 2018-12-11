@@ -33,7 +33,7 @@ public class IssueDao extends BaseDao<Issue> {
 	public List<Issue> listIssuesByCustomer(Customer deviceOwner) {
 		return entityManager
 				.createQuery(
-						"SELECT i FROM Issue i JOIN FETCH i.device d WHERE i.deviceOwner= :deviceOwner AND i.status=1")
+						"SELECT i FROM Issue i JOIN FETCH i.device d WHERE i.deviceOwner= :deviceOwner AND i.status=1 ORDER BY i.id")
 				.setParameter("deviceOwner", deviceOwner).getResultList();
 	}
 
@@ -86,14 +86,14 @@ public class IssueDao extends BaseDao<Issue> {
 		StringBuilder query = new StringBuilder(" SELECT i FROM Issue i JOIN FETCH i.device d WHERE i.status=1 ");
 
 		if (processType != null && issueStatu == null) {
-			query.append(" AND i.processType= :processType ");
+			query.append(" AND i.processType= :processType ORDER BY i.id");
 			issues = entityManager.createQuery(query.toString()).setParameter("processType", processType)
 					.getResultList();
 		} else if (issueStatu != null && processType == null) {
-			query.append(" AND i.issueStatu= :issueStatu ");
+			query.append(" AND i.issueStatu= :issueStatu ORDER BY i.id");
 			issues = entityManager.createQuery(query.toString()).setParameter("issueStatu", issueStatu).getResultList();
 		} else if (issueStatu != null && processType != null) {
-			query.append(" AND i.processType= :processType AND i.issueStatu= :issueStatu ");
+			query.append(" AND i.processType= :processType AND i.issueStatu= :issueStatu ORDER BY i.id");
 			issues = entityManager.createQuery(query.toString()).setParameter("processType", processType)
 					.setParameter("issueStatu", issueStatu).getResultList();
 		} else {
@@ -106,7 +106,7 @@ public class IssueDao extends BaseDao<Issue> {
 	@SuppressWarnings("unchecked")
 	public List<Issue> getIssueByMaintenanceDay(Date date, IssueStatu issueStatu, ProcessType processType) {
 		return entityManager.createQuery(
-				"SELECT i FROM Issue i where i.date <= :date AND i.issueStatu= :issueStatu AND i.processType= :processType AND i.status=1")
+				"SELECT i FROM Issue i where i.date <= :date AND i.issueStatu= :issueStatu AND i.processType= :processType AND i.status=1 ORDER BY i.id")
 				.setParameter("date", date).setParameter("issueStatu", issueStatu)
 				.setParameter("processType", processType).getResultList();
 	}

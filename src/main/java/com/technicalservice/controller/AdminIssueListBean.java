@@ -10,7 +10,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import com.technicalservice.controller.base.BaseBean;
-import com.technicalservice.dao.CustomerDao;
 import com.technicalservice.dao.IssueDao;
 import com.technicalservice.dao.base.BaseDao;
 import com.technicalservice.model.entity.Issue;
@@ -32,9 +31,6 @@ public class AdminIssueListBean extends BaseBean<Issue> {
 
 	@EJB
 	private IssueDao issueDao;
-
-	@EJB
-	private CustomerDao customerDao;
 
 	private Process process;
 
