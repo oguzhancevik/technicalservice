@@ -15,6 +15,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.technicalservice.model.base.ExtendedModel;
 import com.technicalservice.model.type.IssueStatu;
 import com.technicalservice.model.type.ProcessType;
@@ -31,7 +32,8 @@ public class Issue extends ExtendedModel {
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
 	private Device device;
 
-	@OneToOne
+	@JsonIgnore
+	@OneToOne(cascade = CascadeType.ALL)
 	private Customer deviceOwner;
 
 	@Enumerated(EnumType.STRING)
@@ -45,9 +47,11 @@ public class Issue extends ExtendedModel {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date date;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "issue", fetch = FetchType.EAGER, cascade=CascadeType.ALL)
 	private List<Process> processes;
 
+	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL, optional = true)
 	private User repairman;
 

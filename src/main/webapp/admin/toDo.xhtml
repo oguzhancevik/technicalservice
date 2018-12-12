@@ -20,26 +20,26 @@
 						<p:panelGrid columns="1" layout="grid"
 							styleClass="ui-panelgrid-blank form-group">
 
-							<p:inputText value="#{toDoDetailBean.selectedModel.title}"
+							<p:inputText value="#{toDoDetailBean.mainToDo.title}"
 								placeholder="Başlık" required="true"
 								requiredMessage="Başlık Giriniz" />
 
 							<p:inputTextarea
-								value="#{toDoDetailBean.selectedModel.description}"
+								value="#{toDoDetailBean.mainToDo.description}"
 								placeholder="Açıklama" required="true"
 								requiredMessage="Açıklama Giriniz" />
 
-							<p:calendar value="#{toDoDetailBean.selectedModel.deadline}"
+							<p:calendar value="#{toDoDetailBean.mainToDo.deadline}"
 								pattern="dd-MM-yyyy HH:mm" mask="true"
 								placeholder="Bitiş Tarihi" required="true"
 								requiredMessage="Lütfen bitiş tarihi giriniz." />
 
 
-							<p:dataList value="#{toDoDetailBean.selectedModel.toDos}" var="data"
+							<p:dataList value="#{toDoDetailBean.mainToDo.toDos}" var="data"
 								paginator="true" rows="3" styleClass="paginated">
 								<f:facet name="header">
 									<p:panelGrid columns="2">
-										<p:selectOneMenu value="#{toDoDetailBean.toDo}"
+										<p:selectOneMenu value="#{toDoDetailBean.subToDo}"
 											converter="omnifaces.SelectItemsConverter">
 											<f:selectItem itemLabel="To-Do seçiniz" />
 											<f:selectItems value="#{toDoDetailBean.toDos}" var="toDo"

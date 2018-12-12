@@ -6,8 +6,10 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -53,7 +55,7 @@ public class DeviceEndpoint {
 	@Path("/create")
 	@Consumes(MediaType.APPLICATION_JSON + "; charset=UTF-8")
 	@Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
-	public Response registerCustomer(DeviceRest deviceRest) throws Exception {
+	public Response create(DeviceRest deviceRest) throws Exception {
 
 		Result result = new Result();
 		try {
@@ -80,21 +82,89 @@ public class DeviceEndpoint {
 
 	/**
 	 * Url: http://localhost:8080/technicalservice/rest/device/list/test@gmail.com
-	 * @param email Cihazları listelenecek olan Customer maili
+	 * 
+	 * @param email
+	 *            Cihazları listelenecek olan Customer maili
 	 * @return cihaz listesi döner
 	 */
 	@GET
 	@Path("/list/{email}")
-	@Produces("application/json; charset=UTF-8")
-	public Response login(@PathParam("email") String email) {
+	@Consumes(MediaType.APPLICATION_JSON + "; charset=UTF-8")
+	@Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
+	public Response list(@PathParam("email") String email) {
 		List<Device> devices = new ArrayList<>();
 		try {
 			Customer customer = customerDao.findByUser(userDao.findByEmail(email));
 			devices = deviceDao.listDevicesByCustomer(customer);
 		} catch (Exception e) {
-			e.printStackTrace();
+			UtilLog.log(e);
 		}
 		return Response.ok(devices).build();
+	}
+
+	/**
+	 * Url: http://localhost:8080/technicalservice/rest/device/update
+	 * 
+	 * @param deviceRest
+	 *            güncellenecek olan cihaz.
+	 * @return cihazın güncellenip güncellenmediği bilgisini döndürür.
+	 */
+	@PUT
+	@Path("/update")
+	@Consumes(MediaType.APPLICATION_JSON + "; charset=UTF-8")
+	@Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
+	public Response update(DeviceRest deviceRest) {
+		Result result = new Result();
+
+		try {
+			Device device = deviceDao.findById(deviceRest.getId());
+			device.setBrand(deviceRest.getBrand());
+			device.setModel(deviceRest.getModel());
+			device.setDeviceType(deviceRest.getDeviceType());
+			device.setGuaranteePeriod(deviceRest.getGuaranteePeriod());
+			device.setColor(deviceRest.getColor());
+			device.setHeight(deviceRest.getHeight());
+			device.setWidth(device.getWidth());
+			device.setKg(deviceRest.getKg());
+
+			deviceDao.save(device);
+
+			result.setResult(true);
+			result.setMessage("Cihaz güncellendi!");
+		} catch (Exception e) {
+			UtilLog.log(e);
+			result.setResult(false);
+			result.setMessage("Cihaz güncellenemedi!");
+		}
+
+		return Response.ok(result).build();
+	}
+
+	/**
+	 * Url: http://localhost:8080/technicalservice/rest/device/remove
+	 * @param deviceRest
+	 *            silinecek olan cihaz
+	 * @return cihazın silinip silinmediği bilgisini döner.
+	 */
+	@DELETE
+	@Path("/remove")
+	@Consumes(MediaType.APPLICATION_JSON + "; charset=UTF-8")
+	@Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
+	public Response remove(DeviceRest deviceRest) {
+		Result result = new Result();
+		try {
+
+			Device device = deviceDao.findById(deviceRest.getId());
+			deviceDao.passive(device);
+
+			result.setResult(true);
+			result.setMessage("Cihaz silindi!");
+		} catch (Exception e) {
+			UtilLog.log(e);
+			result.setResult(true);
+			result.setMessage("Cihaz silinemedi!");
+		}
+		return Response.ok(result).build();
 	}
 
 }

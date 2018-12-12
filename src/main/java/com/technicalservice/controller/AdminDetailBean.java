@@ -41,6 +41,11 @@ public class AdminDetailBean {
 	}
 
 	/**
+	 * Admin kaydetmek için kullanılan metoddur. Daha önceden var olan bir email ile
+	 * kayıt olunacak ise uyarı mesajı vermekte. Yeni kayıt olacak ise rolü Admin
+	 * olarak atandıktan sonra database kayıt yapılmaktadır. Daha sonra page
+	 * adresindeki sayfaya yönlendirilmektedir.
+	 * 
 	 * @param page
 	 *            yönlendirilecek sayfa adresi
 	 */
@@ -49,7 +54,8 @@ public class AdminDetailBean {
 
 			if (user.getId() == null && userDao.findByEmail(user.getEmail()) != null) {
 				UtilLog.logToScreen(FacesMessage.SEVERITY_ERROR, "HATA", "Email zaten kayıtlı!");
-				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "HATA", "Email zaten kayıtlı!"));
+				FacesContext.getCurrentInstance().addMessage(null,
+						new FacesMessage(FacesMessage.SEVERITY_ERROR, "HATA", "Email zaten kayıtlı!"));
 			} else {
 				user.setRole("Admin");
 				userDao.save(user);
@@ -58,7 +64,7 @@ public class AdminDetailBean {
 			FacesContext.getCurrentInstance().getExternalContext().redirect(page);
 		} catch (Exception e) {
 			UtilLog.logToScreen(FacesMessage.SEVERITY_ERROR, "HATA", "Admin Kaydedilemedi!");
-			e.printStackTrace();
+			UtilLog.log(e);
 		}
 	}
 

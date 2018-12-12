@@ -201,7 +201,7 @@ public class UserEndpoint {
 
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			UtilLog.log(e);
 			result.setResult(false);
 			result.setMessage("Mail gönderilemedi");
 		}
@@ -247,7 +247,7 @@ public class UserEndpoint {
 			result.setResult(true);
 			result.setMessage("Şifre Değiştirildi");
 		} catch (Exception e) {
-			e.printStackTrace();
+			UtilLog.log(e);
 			result.setResult(false);
 			result.setMessage("Şifre değiştirilemedi!");
 		}
@@ -275,7 +275,7 @@ public class UserEndpoint {
 			result.setResult(true);
 			result.setMessage("Kullanıcı silindi!");
 		} catch (Exception e) {
-			e.printStackTrace();
+			UtilLog.log(e);
 			result.setResult(true);
 			result.setMessage("Kullanıcı silindi!");
 		}
@@ -303,7 +303,7 @@ public class UserEndpoint {
 			result.setResult(true);
 			result.setMessage("Üyelik statusu değiştirildi");
 		} catch (Exception e) {
-			e.printStackTrace();
+			UtilLog.log(e);
 			result.setResult(false);
 			result.setMessage("Üyelik statusu değiştirilemedi!");
 		}

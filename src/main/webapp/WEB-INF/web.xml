@@ -6,6 +6,7 @@
 	<display-name>technicalservice</display-name>
 	<welcome-file-list>
 		<welcome-file>giris.xhtml</welcome-file>
+		<welcome-file>dashboard.xhtml</welcome-file>
 	</welcome-file-list>
 
 

@@ -18,7 +18,7 @@ import com.technicalservice.model.type.ProcessType;
 import com.technicalservice.util.UtilLog;
 
 /**
- * Admin ekranında müşterinin cihaz arıza / bakım işlemlerinin listelendiği sınıftır.
+ * Admin ekranında müşterinin arıza / bakım işlemlerinin listelendiği sınıftır.
  * 
  * @author oguzhan
  *
@@ -43,12 +43,16 @@ public class AdminIssueListBean extends BaseBean<Issue> {
 
 	@Override
 	public List<Issue> listInitial() {
-		process=new Process();
+		process = new Process();
 		return issueDao.getIssuesByProcess(null, null);
 	}
 
 	/**
-	 * Admin bakım işlemini bitirmiş ise cihaz sahibine mail gönderilir.
+	 * Admin kullanıcısı bakım onarım talebi üzerinde işlem yapmak istiyor ama daha
+	 * önce başka bir admin kullanıcısı tarafından işlem yapılmış ise uyarı veriyor.
+	 * Eğer bakım onarım talebinin sorumlusu kendisi veya yeni bir talep ise işlem
+	 * kaydedilir. Daha sonra talep açan kullanıcının mailine bilgilendirme maili
+	 * gider.
 	 * 
 	 * @param issue
 	 *            Bakım talebi

@@ -6,6 +6,12 @@ import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
 import javax.faces.context.FacesContext;
 
+/**
+ * Ekrana veya console mesaj yazmak için kullanılan sınıftır.
+ * 
+ * @author oguzhan
+ *
+ */
 public class UtilLog {
 
 	/**

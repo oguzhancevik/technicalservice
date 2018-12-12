@@ -11,6 +11,7 @@ import javax.ws.rs.core.Response;
 import com.technicalservice.controller.MailSender;
 import com.technicalservice.model.pojo.Result;
 import com.technicalservice.model.rest.MailRest;
+import com.technicalservice.util.UtilLog;
 
 /**
  * Rest servis ile mail göndermek için kullanılan sınıftır.
@@ -41,7 +42,7 @@ public class MailEndpoint {
 			result.setResult(true);
 			result.setMessage("Mail gönderildi!");
 		} catch (Exception e) {
-			e.printStackTrace();
+			UtilLog.log(e);
 			result.setResult(false);
 			result.setMessage("Mail gönderilemedi!");
 		}

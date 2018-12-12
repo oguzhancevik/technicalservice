@@ -121,7 +121,7 @@ public class MailSender {
 			UtilLog.log("MailSender OK! ");
 		} catch (Exception e) {
 			UtilLog.log("MailSender HATA: " + e.getMessage());
-			e.printStackTrace();
+			UtilLog.log(e);
 		}
 	}
 }

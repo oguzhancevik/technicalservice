@@ -31,7 +31,7 @@ public class PasswordResetRequestDao extends BaseDao<PasswordResetRequest> {
 	 * @return şifre yenileme talep sayısını döndürür.
 	 */
 	public BigInteger passwordTokenControl(String email) {
-		String query = "SELECT pr FROM PasswordResetRequest pr WHERE pr.user.email= :email and status=1";
+		String query = "SELECT pr FROM PasswordResetRequest pr WHERE pr.user.email= :email AND status=1";
 		BigInteger tokenCount = new BigInteger(
 				Integer.toString(entityManager.createQuery(query).setParameter("email", email).getResultList().size()));
 		return tokenCount;

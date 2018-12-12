@@ -82,7 +82,7 @@ public class CustomerIssueDetailBean {
 			FacesContext.getCurrentInstance().getExternalContext().redirect(page);
 		} catch (Exception e) {
 			UtilLog.logToScreen(FacesMessage.SEVERITY_ERROR, "HATA", "Bakım/Onarım Kaydedilemedi!");
-			e.printStackTrace();
+			UtilLog.log(e);
 		}
 	}
 

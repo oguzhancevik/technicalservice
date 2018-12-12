@@ -25,7 +25,7 @@ import com.technicalservice.model.type.ProcessType;
 import com.technicalservice.util.UtilLog;
 
 /**
- * Rest servis ile cihaz işlemleri yapılan sınıftır.
+ * Rest servis ile todo işlemleri yapılan sınıftır.
  * 
  * @author oguzhan
  */
@@ -75,7 +75,7 @@ public class ToDoEndpoint {
 
 	/**
 	 * Url:
-	 * http://localhost:8080/technicalservice/rest/todo/list/oguzhancevik96@gmail.com
+	 * http://localhost:8080/technicalservice/rest/todo/list/test@gmail.com
 	 * 
 	 * @param email
 	 *            todo listeleri listelenecek olan kullanıcı
@@ -90,7 +90,7 @@ public class ToDoEndpoint {
 		try {
 			toDos = toDoDao.getToDosByUser(userDao.findByEmail(email));
 		} catch (Exception e) {
-			e.printStackTrace();
+			UtilLog.log(e);
 		}
 		return Response.ok(toDos).build();
 	}
@@ -122,7 +122,7 @@ public class ToDoEndpoint {
 			result.setResult(true);
 			result.setMessage("To-Do güncellendi!");
 		} catch (Exception e) {
-			e.printStackTrace();
+			UtilLog.log(e);
 			result.setResult(false);
 			result.setMessage("To-Do güncellenemedi!");
 		}
@@ -150,7 +150,7 @@ public class ToDoEndpoint {
 			result.setResult(true);
 			result.setMessage("To-Do silindi!");
 		} catch (Exception e) {
-			e.printStackTrace();
+			UtilLog.log(e);
 			result.setResult(true);
 			result.setMessage("To-Do silinemedi!");
 		}

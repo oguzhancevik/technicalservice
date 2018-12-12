@@ -111,7 +111,7 @@ public class ForgotPasswordBean {
 			FacesContext.getCurrentInstance().addMessage("BAŞARISIZ",
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "HATA", "Mail gönderilemedi"));
 			UtilLog.log("Password mail send HATALI");
-			e.printStackTrace();
+			UtilLog.log(e);
 		}
 	}
 
@@ -136,7 +136,7 @@ public class ForgotPasswordBean {
 				UtilLog.logToScreen(FacesMessage.SEVERITY_ERROR, "HATA!", message);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			UtilLog.log(e);
 		}
 	}
 
@@ -163,7 +163,7 @@ public class ForgotPasswordBean {
 				}
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			UtilLog.log(e);
 		}
 	}
 

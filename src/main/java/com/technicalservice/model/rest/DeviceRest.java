@@ -9,6 +9,8 @@ public class DeviceRest implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	private Long id;
+
 	private String ownerEmail;
 
 	private String brand;
@@ -26,6 +28,14 @@ public class DeviceRest implements Serializable {
 	private Integer width;
 
 	private Integer kg;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getOwnerEmail() {
 		return ownerEmail;

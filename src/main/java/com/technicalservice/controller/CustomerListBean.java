@@ -57,7 +57,7 @@ public class CustomerListBean extends BaseBean<Customer> {
 			UtilLog.logToScreen(FacesMessage.SEVERITY_INFO, "BAŞARILI",
 					"Müşteri üyelik durumu " + memberStatu.getDisplayName() + " olarak güncellendi!");
 		} catch (Exception e) {
-			e.printStackTrace();
+			UtilLog.log(e);
 			UtilLog.logToScreen(FacesMessage.SEVERITY_ERROR, "HATA",
 					"Müşteri üyelik durumu " + memberStatu.getDisplayName() + " olarak değiştirilemedi!");
 		}
@@ -65,7 +65,7 @@ public class CustomerListBean extends BaseBean<Customer> {
 	}
 
 	/**
-	 * Sistemden pasif edilecek müşterinin user statusu 0 yapılır.
+	 * Sistemden pasif edilecek müşterinin user statusu de 0 yapılır.
 	 */
 	@Override
 	public void remove(Customer removeModel) {

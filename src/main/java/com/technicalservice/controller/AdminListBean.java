@@ -16,7 +16,7 @@ import com.technicalservice.model.type.MemberStatu;
 import com.technicalservice.util.UtilLog;
 
 /**
- * Admin ekranında adminlerin listelendiği sınıftır.
+ * Admin ekranında admin kullanıcılarının listelendiği sınıftır.
  * 
  * @author oguzhan
  *
@@ -55,7 +55,7 @@ public class AdminListBean extends BaseBean<User> {
 			UtilLog.logToScreen(FacesMessage.SEVERITY_INFO, "BAŞARILI",
 					"Admin üyelik durumu " + memberStatu.getDisplayName() + " olarak güncellendi!");
 		} catch (Exception e) {
-			e.printStackTrace();
+			UtilLog.log(e);
 			UtilLog.logToScreen(FacesMessage.SEVERITY_ERROR, "HATA",
 					"Admin üyelik durumu " + memberStatu.getDisplayName() + " olarak değiştirilemedi!");
 		}

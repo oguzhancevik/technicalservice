@@ -8,13 +8,12 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
 
-import com.technicalservice.controller.base.BaseBean;
 import com.technicalservice.dao.ToDoDao;
-import com.technicalservice.dao.base.BaseDao;
 import com.technicalservice.model.entity.ToDo;
 import com.technicalservice.model.entity.User;
 import com.technicalservice.model.type.ProcessType;
@@ -28,36 +27,38 @@ import com.technicalservice.util.UtilLog;
  */
 @ManagedBean(name = "toDoDetailBean")
 @ViewScoped
-public class ToDoDetailBean extends BaseBean<ToDo> {
+public class ToDoDetailBean {
 
-	private static final long serialVersionUID = 1L;
+	@ManagedProperty(value = "#{sessionObject}")
+	private SessionObject sessionObject;
 
 	@EJB
 	private ToDoDao toDoDao;
 
-	private ToDo toDo;
+	private ToDo mainToDo;
+
+	private ToDo subToDo;
 
 	private List<ToDo> toDos;
 
 	/**
 	 * To-do listesi sayfasından Flash ile bir obje gönderilmiş ise burada kontrol
-	 * ediliyor. Dolu ise selectedModel değişkenine gelen obje atanıyor.
+	 * ediliyor. Dolu ise mainToDo değişkenine gelen obje atanıyor.
 	 */
-	@Override
 	@PostConstruct
 	public void init() {
 
-		setSelectedModel(new ToDo(new User()));
-		getSelectedModel().setToDos(new ArrayList<>());
-		getSelectedModel().setProcessType(ProcessType.WAITING);
+		mainToDo = new ToDo(new User());
+		mainToDo.setToDos(new ArrayList<>());
+		mainToDo.setProcessType(ProcessType.WAITING);
 
 		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
 		if (flash.containsKey("model")) {
-			setSelectedModel((ToDo) flash.get("model"));
+			mainToDo = (ToDo) flash.get("model");
 		}
 
-		toDo = new ToDo(new User());
-		toDo.setToDos(new ArrayList<>());
+		subToDo = new ToDo(new User());
+		subToDo.setToDos(new ArrayList<>());
 		toDos = toDoDao.getToDosByProcessType(ProcessType.WAITING);
 	}
 
@@ -67,15 +68,15 @@ public class ToDoDetailBean extends BaseBean<ToDo> {
 	public void addToDo() {
 		try {
 
-			if (toDo == null) {
+			if (subToDo == null) {
 				UtilLog.logToScreen(FacesMessage.SEVERITY_WARN, "Uyarı", "To-do seç!");
 			} else {
 
-				if (getSelectedModel().getToDos().contains(toDo)) {
+				if (mainToDo.getToDos().contains(subToDo)) {
 					UtilLog.logToScreen(FacesMessage.SEVERITY_WARN, "Uyarı", "ToDo zaten eklenmiş!");
 				} else {
-					getSelectedModel().getToDos().add(toDo);
-					toDo = new ToDo();
+					mainToDo.getToDos().add(subToDo);
+					subToDo = new ToDo();
 					UtilLog.logToScreen(FacesMessage.SEVERITY_INFO, "Başarılı", "ToDo eklendi!");
 				}
 			}
@@ -95,7 +96,7 @@ public class ToDoDetailBean extends BaseBean<ToDo> {
 	 */
 	public void removeToDo(ToDo toDo) {
 		try {
-			getSelectedModel().getToDos().remove(toDo);
+			mainToDo.getToDos().remove(toDo);
 			UtilLog.logToScreen(FacesMessage.SEVERITY_INFO, "Başarılı", "ToDo silindi!");
 		} catch (Exception e) {
 			UtilLog.log(e);
@@ -107,33 +108,38 @@ public class ToDoDetailBean extends BaseBean<ToDo> {
 	 * @param page
 	 *            Yönlendirilecek sayfa adresi
 	 */
-	@Override
 	public void save(String page) throws IOException {
 		try {
-			getSelectedModel().setOwner(getSessionObject().getUser());
-			super.save(page);
+			mainToDo.setOwner(getSessionObject().getUser());
+			toDoDao.save(mainToDo);
 		} catch (Exception e) {
-			UtilLog.logToScreen(FacesMessage.SEVERITY_ERROR, "HATA", "Müşteri Kaydedilemedi!");
-			e.printStackTrace();
+			UtilLog.logToScreen(FacesMessage.SEVERITY_ERROR, "HATA", "ToDo Kaydedilemedi!");
+			UtilLog.log(e);
 		}
 	}
 
-	@Override
-	public List<ToDo> listInitial() {
-		return null;
+	public SessionObject getSessionObject() {
+		return sessionObject;
 	}
 
-	@Override
-	public BaseDao<ToDo> getBaseDao() {
-		return toDoDao;
+	public void setSessionObject(SessionObject sessionObject) {
+		this.sessionObject = sessionObject;
 	}
 
-	public ToDo getToDo() {
-		return toDo;
+	public ToDo getMainToDo() {
+		return mainToDo;
 	}
 
-	public void setToDo(ToDo toDo) {
-		this.toDo = toDo;
+	public void setMainToDo(ToDo mainToDo) {
+		this.mainToDo = mainToDo;
+	}
+
+	public ToDo getSubToDo() {
+		return subToDo;
+	}
+
+	public void setSubToDo(ToDo subToDo) {
+		this.subToDo = subToDo;
 	}
 
 	public List<ToDo> getToDos() {

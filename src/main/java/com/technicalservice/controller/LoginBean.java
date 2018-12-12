@@ -40,9 +40,7 @@ public class LoginBean implements Serializable {
 
 	@PostConstruct
 	public void init() {
-		customer = new Customer();
-		User user = new User();
-		customer.setUser(user);
+		customer = new Customer(new User());
 	}
 
 	/**

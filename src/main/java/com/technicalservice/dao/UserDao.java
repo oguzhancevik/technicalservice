@@ -33,6 +33,8 @@ public class UserDao extends BaseDao<User> {
 	private static final String passwordMustContainAllCases = "GİRİLEN ŞİFRE SADECE RAKAM İÇERMELİDİR!";
 
 	/**
+	 * CriteriaBuilder ile database de girilen email ve şifre ile oluşturulan bir
+	 * kullanıcı varmı yokmu kontrol edilir.
 	 * 
 	 * @param email
 	 *            Kulanıcının giriş yapacağı email

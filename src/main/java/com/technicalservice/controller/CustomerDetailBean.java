@@ -46,6 +46,11 @@ public class CustomerDetailBean {
 	}
 
 	/**
+	 * Müşteri kaydetmek için kullanılan metoddur. Daha önceden var olan bir email ile
+	 * kayıt olunacak ise uyarı mesajı vermekte. Yeni kayıt olacak ise rolü Customer
+	 * olarak atandıktan sonra database kayıt yapılmaktadır. Daha sonra page
+	 * adresindeki sayfaya yönlendirilmektedir.
+	 * 
 	 * @param page
 	 *            Yönlendirilecek sayfa adresi
 	 */
@@ -60,7 +65,7 @@ public class CustomerDetailBean {
 			FacesContext.getCurrentInstance().getExternalContext().redirect(page);
 		} catch (Exception e) {
 			UtilLog.logToScreen(FacesMessage.SEVERITY_ERROR, "HATA", "Müşteri Kaydedilemedi!");
-			e.printStackTrace();
+			UtilLog.log(e);
 		}
 	}
 

@@ -13,6 +13,7 @@ import com.technicalservice.dao.IssueDao;
 import com.technicalservice.model.entity.Issue;
 import com.technicalservice.model.type.IssueStatu;
 import com.technicalservice.model.type.ProcessType;
+import com.technicalservice.util.UtilLog;
 
 /**
  * İşlemlerin otomotik yapıldığı sınıftır. Ör: bakım günü gelen cihazın sahibine
@@ -29,9 +30,9 @@ public class ScheduleMaintenance {
 	private IssueDao issueDao;
 
 	/**
-	 * Bakım günü gelen cihazlar için her saat başı mail atılır.
+	 * Bakım günü gelen cihazlar için saat sabah 10'da mail atılır.
 	 */
-	@Schedule(hour = "09", minute = "15", second = "00", persistent = false)
+	@Schedule(hour = "10", minute = "00", second = "00", persistent = false)
 	public void runForBackup() {
 
 		try {
@@ -46,7 +47,7 @@ public class ScheduleMaintenance {
 			String content = "Sevgili müşterimiz cihazınızın rutin bakımı yapılacaktır. Bilginize.";
 			MailSender.mailSend(null, null, "TECHNICAL SERVICE", to, subject, content);
 		} catch (Exception e) {
-			e.printStackTrace();
+			UtilLog.log(e);
 		}
 	}
 

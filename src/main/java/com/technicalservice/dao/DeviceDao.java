@@ -20,7 +20,7 @@ public class DeviceDao extends BaseDao<Device> {
 
 	@SuppressWarnings("unchecked")
 	public List<Device> listDevicesByCustomer(Customer owner) {
-		return entityManager.createQuery("SELECT d FROM Device d where d.owner= :owner AND d.status=1 ORDER BY d.id")
+		return entityManager.createQuery("SELECT d FROM Device d WHERE d.owner= :owner AND d.status=1 ORDER BY d.id")
 				.setParameter("owner", owner).getResultList();
 	}
 

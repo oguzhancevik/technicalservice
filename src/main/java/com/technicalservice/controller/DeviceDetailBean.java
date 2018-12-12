@@ -72,7 +72,7 @@ public class DeviceDetailBean {
 			FacesContext.getCurrentInstance().getExternalContext().redirect(page);
 		} catch (Exception e) {
 			UtilLog.logToScreen(FacesMessage.SEVERITY_ERROR, "HATA", "Müşteri Kaydedilemedi!");
-			e.printStackTrace();
+			UtilLog.log(e);
 		}
 	}
 
@@ -86,7 +86,6 @@ public class DeviceDetailBean {
 	 */
 	public void handleFileUpload(FileUploadEvent event) throws IOException {
 		file = event.getFile();
-
 		String nextFileName = deviceDao.getNextVal("image_seq") + "." + FilenameUtils.getExtension(file.getFileName());
 		Files.write(Paths.get(Const.filePathImage + nextFileName), file.getContents());
 		device.setImage(nextFileName);
