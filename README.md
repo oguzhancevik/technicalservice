@@ -1,5 +1,4 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/8b35d8bd87ef4a6298cd08f9eb3a71b8)](https://app.codacy.com/app/oguzhancevik/technicalservice?utm_source=github.com&utm_medium=referral&utm_content=oguzhancevik/technicalservice&utm_campaign=Badge_Grade_Dashboard)
-
 [![Known Vulnerabilities](https://snyk.io/test/github/oguzhancevik/technicalservice/badge.svg?targetFile=pom.xml)](https://snyk.io/test/github/oguzhancevik/technicalservice?targetFile=pom.xml)
 
 ### Kullanılan Teknolojiler :rocket:
