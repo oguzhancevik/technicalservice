@@ -47,7 +47,7 @@ public class Device extends ExtendedModel {
 	private Integer width;
 
 	private Integer kg;
-	
+
 	@OneToMany(mappedBy = "device", fetch = FetchType.LAZY)
 	private List<Issue> issues;
 
@@ -137,6 +137,14 @@ public class Device extends ExtendedModel {
 
 	public void setKg(Integer kg) {
 		this.kg = kg;
+	}
+
+	public List<Issue> getIssues() {
+		return issues;
+	}
+
+	public void setIssues(List<Issue> issues) {
+		this.issues = issues;
 	}
 
 	public Device() {

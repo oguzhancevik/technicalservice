@@ -1,6 +1,6 @@
 [![Known Vulnerabilities](https://snyk.io/test/github/oguzhancevik/technicalservice/badge.svg?targetFile=pom.xml)](https://snyk.io/test/github/oguzhancevik/technicalservice?targetFile=pom.xml)
 
-### Kullanılan Teknolojiler :rocket:
+:rocket: ### Kullanılan Teknolojiler
 * JSF 
 * PrimeFaces 
 * WildFly 10
