@@ -3,7 +3,7 @@
 
 :page_facing_up:[Turkish README](https://github.com/oguzhancevik/technicalservice/blob/master/READMETR.md)
 
-### Kullanılan Teknolojiler :rocket:
+### Used Technologies :rocket:
 * JSF 
 * PrimeFaces 
 * WildFly 10
@@ -11,50 +11,51 @@
 * PostgreSQL 
 * Maven
 
-### Sistem Özellikleri :zap:
+### System Features :zap:
 
-1- Sistemde security bulunmaktadır. Register, Login, Şifremi unuttum gibi özellikler bulunmaktadır.
+1- There is security in the system. There are features such as Register, Login and Forgot Password.
 
-2- Şifremi unuttum özelliği kullanılırsa kullanıcının mailine şifre sıfırlama linki gönderilecektir ve yeni bir şifre belirlenecektir.
+2- If the password forgotten feature is used, a password reset link will be sent to the user's mail and a new password will be set.
 
-3- Sistemde Admin ve Customer adında iki rol bulunmaktadır.
+3- There are two roles in the system, Admin and Customer.
 
-4- Sisteme kayıt olan kullanıcılar admin onayından geçtikten sonra sisteme girebilirler.
+4- Users registered to the system can enter the system after the approval of admin.
 
-5- Bloke olan müşteriler ise siteye erişimezler.
+5- Blocked customers cannot access the site.
 
-6- Admin dasboard ekranında sistemle alakalı bilgiler verilmektedir. Ör; aktif müşteri sayısı, aktif cihaz sayısı, bakım / onarım sayısı, admin sayısı gibi.
+6- The admin dashboard displays information about the system. For example; number of active customers, number of active devices, number of maintenance / repairs, number of admin.
 
-7- Müşteri dashboard ekranında müşteri ile ilgili verilmektedir. Müşteri cihaz sayısı, Ör; Müşteri bakım / onarım talep sayısı.
+7- The admin dashboard displays information about the system. For example; number of active customers, number of active devices, number of maintenance / repairs, number of admin.
 
-8- Admin kullanıcısı Customer kullanıcısının açtığı bakım onarım işleri ile ilgilenmektedir.
+8- Admin is responsible for repair or maintenance of customer device's.
 
-9- Bir müşteri cihazında arıza kaydı veya bakım kaydı yaptırmak istiyor ise ilk önce sisteme üye olmalıdır. Daha sonra cihaz kaydı yapmalı ve hangi cihaz üzerinde işlem yapacaksa ona göre bir issue açmalıdır.
+9- If a customer wants to open a repair or maintenance on his/her device, firstly he/she must be member of system. Then the device should be registered and on which device to repair or maintenance an issue should open an issue.
 
-10- Bir ürün üzerinde birden fazla admin işlem yapamaz.
+10- Only one admin can work on an issue.
 
-11- Bakım tarihi gelen cihaz için kullanıcıya otomatik mail atılır. Veya bir cihaz üzerinde herhangi bir parça değişikliği olmuş ise bu bilgide kullanıcıya mail olarak gider.
+11- Automatic mail is sent to the user for the date of maintenance. Or, if there is any part change on a device, it goes to the user as an e-mail.
 
-12- Admin kullanıcıları to-do (yapılacak) listesi ekleyebilecek. Her admin kullanıcısının birden fazla to-do listesi olabilecek. 
+12- Admin can add to-do list. Each admin can have more than one to-do list.
 
-13- Her to-do listesinin ismi, açıklaması, bitiş tarihi, statusu ve varsa bağımlı alt to-do listeleri olabilir.
+13- Each to-do list can have a name, description, deadline, status, and sub to-do lists.
 
-14- To-do listesinin statusu <code>devam ediyor</code> , <code>tamamlandı</code> olarak işaretlenebilir. 
+14- The status of the to-do list can be marked as <code>continues</code> , <code>completed</code>.
 
-15- Admin kullanıcısı to-do listelerini görüntüleyebilir, güncelleyebilir, silebilirler. Yada mevcut to-do listesine yapılacak to-do item ekleyebilirler.
+15- Admin can view, update and delete to-do lists. They can add to-do list to existing to-do list.
 
-16- To-do listeleri arasında bağımlılık olabilir. Eğer bir to-do listesinde bağımlı olan alt to-do listeler olabilir. Eğer bu bağımlı alt to-do listelerinden herhangi biri <code>tamamlandı</code> olarak işaretlenmemiş ise ana liste <code>tamamlandı</code> olarak işaretlenemez.
+16- There may be dependencies between to-do lists. There may be sub-to-do lists that are dependent on a to-do list. If any of these dependent sub-to-do lists are not marked <code>complete</code>, the master list cannot be marked as <code>complete</code>.
 
 
-### Kurulum :closed_lock_with_key:
+### Installation :closed_lock_with_key:
 
-* ` WEB-INF/lib/ ` dizini altındaki jar dosyaları maven olarak bulunmadığı için projeye dahil etmelisiniz.
+* The jar files under `WEB-INF/lib/` directory are not included in the maven and must be included in the project.
 
-* PostgreSql içine TechnicalService adında bir veritabanı oluşturmalısınız.
+* You must create a database named TechnicalService into PostgreSql.
 
-* Uygulamada Security kullanıldığı için WildFly dizini altında ` standalone/configuration/standalone.xml ` içine aşağıdaki bilgileri eklemelisiniz.
+* Because security is used in the application, you must add the following information into `standalone/configuration/standalone.xml` under WildFly directory (JBOSS_HOME).
 
-` <datasources> </datasources> ` etiketleri arasına aşağıdaki kodu kopyalayınız.
+Copy the following code between the `<datasources> </datasources>` tags.
+
 ```
 <datasource jta="true" jndi-name="java:/TechnicalService" pool-name="TechnicalService" enabled="true" use-ccm="false">
   <connection-url>jdbc:postgresql://localhost:5432/TechnicalService</connection-url>
@@ -63,7 +64,7 @@
   <security>
     <user-name>admin</user-name>
     <password>1234</password>
-   </security>
+  </security>
   <validation>
     <check-valid-connection-sql>select 1</check-valid-connection-sql>
     <validate-on-match>true</validate-on-match>
@@ -72,12 +73,12 @@
   <statement>
     <share-prepared-statements>false</share-prepared-statements>
   </statement>    
-</datasource> 
+</datasource>
 ```
 
-` <security-domains> </security-domains> ` etiketleri arasına aşağıdaki kodu kopyalayınız.
+Copy the following code between the `<security-domains> </security-domains>` tags.
                 
- ``` 
+ ```
  <security-domain name="TechnicalServiceSD" cache-type="default">
   <authentication>
     <login-module code="Database" flag="required">
@@ -86,50 +87,50 @@
       <module-option name="rolesQuery" value="SELECT role, 'Roles' FROM users WHERE email=?"/>
     </login-module>
   </authentication>
-</security-domain> 
+</security-domain>
 ```                
 
-* Email gönderimi için `  com/technicalservice/resource/mail.properties `  dosyası içersinde smtp ve kullanıcı bilgilerini ayarlamalısınız. Email hesabınızdan izin vermeniz gerekebilir (Ör: Gmail güvenilirliği az olan uygulamalar bölümü açık olmalı)
+* You must set the smtp and user information in the `com/technicalservice/resource/mail.properties` file for sending an email. You may need to grant permission from your email account (For example: trusted apps section must be open on Gmail)
 
-* Sisteme cihaz resmi yüklediğimiz için manuel olarak ` image_seq` adında sequence ekleyiniz.
+* Add `image_seq` sequence manually because we've uploaded the device image to the system.
 
-* Yüklenen resimlerin yolunu `  com/technicalservice/resource/Prefix.java ` sınıfından ayarlayabilirsiniz. Daha sonra belirttiğiniz klasörün içine image adında bir klasör daha eklemelisiniz. Ayrıca belirttiğiniz adresin yazma ve okuma yetkisi olmalıdır.
+* You can set the path of the uploaded images from the `com/technicalservice/resource/Prefix.java` class. Then you must add a folder named image into the path you specified. You must also have the authority to write and read the address you specify.
 
-### Kullanım :heavy_check_mark:
+### Usage :heavy_check_mark:
 
 1- Admin Dashboard 
 <br/>
 ![Admin Dashboard](https://raw.githubusercontent.com/oguzhancevik/technicalservice/master/analiz/ekran/00-adminDashbard.gif)
 
 
-2- Şifremi Unuttum
+2- Forgot Password
 <br/>
-![Şifremi Unuttum](https://raw.githubusercontent.com/oguzhancevik/technicalservice/master/analiz/ekran/01-forgotPassword.gif)
+![Forgot Password](https://raw.githubusercontent.com/oguzhancevik/technicalservice/master/analiz/ekran/01-forgotPassword.gif)
 
 
-3- Müşteri Kayıt
+3- Customer Registration
 <br/>
-![Müşteri Kayıt](https://raw.githubusercontent.com/oguzhancevik/technicalservice/master/analiz/ekran/02-customerRegister.gif)
+![Customer Registration](https://raw.githubusercontent.com/oguzhancevik/technicalservice/master/analiz/ekran/02-customerRegister.gif)
 
 
-4- Müşteri Login
+4- Customer Login
 <br/>
-![Müşteri Login](https://raw.githubusercontent.com/oguzhancevik/technicalservice/master/analiz/ekran/03-customerLogin.gif)
+![Customer Login](https://raw.githubusercontent.com/oguzhancevik/technicalservice/master/analiz/ekran/03-customerLogin.gif)
 
 
-5- Cihaz CRUD
+5- Device CRUD
 <br/>
-![Cihaz CRUD](https://raw.githubusercontent.com/oguzhancevik/technicalservice/master/analiz/ekran/04-deviceCrud.gif)
+![Device CRUD](https://raw.githubusercontent.com/oguzhancevik/technicalservice/master/analiz/ekran/04-deviceCrud.gif)
 
 
-6- Bakım / Onarım CRUD
+6- Maintenance / Repair CRUD
 <br/>
-![Bakım / Onarım CRUD](https://raw.githubusercontent.com/oguzhancevik/technicalservice/master/analiz/ekran/05-issueCrud.gif)
+![Maintenance / Repair CRUD](https://raw.githubusercontent.com/oguzhancevik/technicalservice/master/analiz/ekran/05-issueCrud.gif)
 
 
-7- Admin Bakım / Onarım
+7- Admin Maintenance / Repair
 <br/>
-![Bakım / Onarım CRUD](https://raw.githubusercontent.com/oguzhancevik/technicalservice/master/analiz/ekran/06-adminIssue.gif)
+![Admin Maintenance / Repair](https://raw.githubusercontent.com/oguzhancevik/technicalservice/master/analiz/ekran/06-adminIssue.gif)
 
 
 8- To-Do CRUD
@@ -137,11 +138,11 @@
 ![To-Do CRUD](https://raw.githubusercontent.com/oguzhancevik/technicalservice/master/analiz/ekran/07-toDoCrud.gif)
 
 
-### Kaynaklar :information_source:
+### Sources :information_source:
 [JavaDoc](https://github.com/oguzhancevik/technicalservice/tree/master/javadoc)
 <br/>
 [Uml Class Diagram](https://github.com/oguzhancevik/technicalservice/tree/master/uml)
 <br/>
-[Rest Servisleri Ekran Görüntüleri](https://github.com/oguzhancevik/technicalservice/tree/master/analiz/rest)
+[Rest Services Screenshots](https://github.com/oguzhancevik/technicalservice/tree/master/analiz/rest)
 <br/>
 [YouTube Playlist](https://www.youtube.com/playlist?list=PLfFIom4mu859IytYr4gPFFabvOnWp1w3f)
