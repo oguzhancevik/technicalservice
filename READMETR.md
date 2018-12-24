@@ -21,7 +21,7 @@
 
 4- Sisteme kayıt olan kullanıcılar admin onayından geçtikten sonra sisteme girebilirler.
 
-5- Bloke olan müşteriler ise siteye erişimezler.
+5- Bloke olan müşteriler ise siteye erişemezler.
 
 6- Admin dasboard ekranında sistemle alakalı bilgiler verilmektedir. Ör; aktif müşteri sayısı, aktif cihaz sayısı, bakım / onarım sayısı, admin sayısı gibi.
 
@@ -31,11 +31,11 @@
 
 9- Bir müşteri cihazında arıza kaydı veya bakım kaydı yaptırmak istiyor ise ilk önce sisteme üye olmalıdır. Daha sonra cihaz kaydı yapmalı ve hangi cihaz üzerinde işlem yapacaksa ona göre bir issue açmalıdır.
 
-10- Bir ürün üzerinde birden fazla admin işlem yapamaz.
+10- Bir issue üzerinde birden fazla admin işlem yapamaz.
 
 11- Bakım tarihi gelen cihaz için kullanıcıya otomatik mail atılır. Veya bir cihaz üzerinde herhangi bir parça değişikliği olmuş ise bu bilgide kullanıcıya mail olarak gider.
 
-12- Admin kullanıcıları to-do (yapılacak) listesi ekleyebilecek. Her admin kullanıcısının birden fazla to-do listesi olabilecek. 
+12- Admin users can add to-do list. Each admin user can have more than one to-do list. 
 
 13- Her to-do listesinin ismi, açıklaması, bitiş tarihi, statusu ve varsa bağımlı alt to-do listeleri olabilir.
 
@@ -43,7 +43,7 @@
 
 15- Admin kullanıcısı to-do listelerini görüntüleyebilir, güncelleyebilir, silebilirler. Yada mevcut to-do listesine yapılacak to-do item ekleyebilirler.
 
-16- To-do listeleri arasında bağımlılık olabilir. Eğer bir to-do listesinde bağımlı olan alt to-do listeler olabilir. Eğer bu bağımlı alt to-do listelerinden herhangi biri <code>tamamlandı</code> olarak işaretlenmemiş ise ana liste <code>tamamlandı</code> olarak işaretlenemez.
+16- To-do listeleri arasında bağımlılık olabilir. Bir to-do listesinde bağımlı olan alt to-do listeler olabilir. Eğer bu bağımlı alt to-do listelerinden herhangi biri <code>tamamlandı</code> olarak işaretlenmemiş ise ana liste <code>tamamlandı</code> olarak işaretlenemez.
 
 
 ### Kurulum :closed_lock_with_key:
@@ -129,7 +129,7 @@
 
 7- Admin Bakım / Onarım
 <br/>
-![Bakım / Onarım CRUD](https://raw.githubusercontent.com/oguzhancevik/technicalservice/master/analiz/ekran/06-adminIssue.gif)
+![Admin Bakım / Onarım](https://raw.githubusercontent.com/oguzhancevik/technicalservice/master/analiz/ekran/06-adminIssue.gif)
 
 
 8- To-Do CRUD
