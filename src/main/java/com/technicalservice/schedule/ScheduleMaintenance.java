@@ -33,7 +33,7 @@ public class ScheduleMaintenance {
 	 * Bakım günü gelen cihazlar için saat sabah 10'da mail atılır.
 	 */
 	@Schedule(hour = "10", minute = "00", second = "00", persistent = false)
-	public void runForBackup() {
+	public void sendMail() {
 
 		try {
 			List<Issue> issues = issueDao.getIssueByMaintenanceDay(new Date(), IssueStatu.MAINTENANCE,
