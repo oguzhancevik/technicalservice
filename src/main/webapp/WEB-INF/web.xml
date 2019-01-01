@@ -60,7 +60,7 @@
 
 	<filter>
 		<filter-name>Character Encoding Filter</filter-name>
-		<filter-class>com.technicalservice.filter.CharacterEncodingFilter</filter-class>
+		<filter-class>io.github.oguzhancevik.technicalservice.filter.CharacterEncodingFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>Character Encoding Filter</filter-name>
@@ -70,7 +70,7 @@
 
 	<servlet>
 		<servlet-name>ImageServlet</servlet-name>
-		<servlet-class>com.technicalservice.servlet.ImageServlet</servlet-class>
+		<servlet-class>io.github.oguzhancevik.technicalservice.servlet.ImageServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>ImageServlet</servlet-name>
